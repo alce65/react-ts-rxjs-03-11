@@ -3,7 +3,7 @@
 - [TYPESCRIPT Y PROGRAMACIÓN REACTIVA](#typescript-y-programación-reactiva)
   - [OBJETIVOS](#objetivos)
   - [Desarrollo](#desarrollo)
-    - [Día !](#día-)
+    - [Día 1 - 03/11/2026](#día-1---03112026)
 
 DURACIÓN: 45 horas
 
@@ -25,12 +25,28 @@ Avanzado
 
 ## Desarrollo
 
-### Día !
+### Día 1 - 03/11/2026
 
-- Presentación
+- Presentación: formador y alumnos
+- Introducción: curso, temario, objetivos, metodología, herramientas previas
 - Instalación monorepo {monorepo}
-- Configuración proyecto React + TS + Vite {configuracion}
+- Configuración proyecto React + TS + Vite
+- Incorporación de Vitest
 
-{descanso}
+- [descanso]
 
-- TS
+- TypeScript: proyecto básico (pure TS) en el monorepo
+- Introducción a TypeScript:
+  - tipos básicos, interfaces y tipos
+  - combinación de tipos, records
+  - clases (OOP)
+  - narrowing: type guards, discriminated unions
+
+<!-- 
+
+### Día 2 - 10/11/2026
+
+- React básico
+- Ejercicio práctico: proyecto React + TS + Vite -> convertir a componentes funcionales 
+ 
+-->
