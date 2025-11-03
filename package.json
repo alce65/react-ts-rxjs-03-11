@@ -1,0 +1,24 @@
+{
+  "name": "in-situ",
+  "version": "1.0.0",
+  "description": "- [TYPESCRIPT Y PROGRAMACIÓN REACTIVA](#typescript-y-programación-reactiva)   - [OBJETIVOS](#objetivos)",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "projects/*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alce65/react-ts-rxjs-03-11.git"
+  },
+  "keywords": [],
+  "author": "Alejandro Cerezo",
+  "license": "ISC",
+  "prettier": {
+    "singleQuote": true
+  }
+}
