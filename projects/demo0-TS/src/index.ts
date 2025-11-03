@@ -8,7 +8,7 @@ export const add = (a: number, b: number): number => {
 
 // Parámetros opcionales con valores por defecto
 // Se infieren los tipos de los parámetros
-export const addWithDefault = (a = 0, b= 0): number => {
+export const addWithDefault = (a = 0, b = 0): number => {
     return a + b;
 };
 
@@ -19,14 +19,13 @@ export const addWithDefault = (a = 0, b= 0): number => {
 // Unión de tipos, en este caso primitivos string | number
 // Tipo de retorno void
 export const render = (value: string | number): void => {
-
     // Guarda de tipos
     if (typeof value === 'number') {
         value = value.toString();
     }
     // Narrowing: el tipo ya solo puede ser string
     console.log(value);
-}
+};
 
 // Tipo any - mala práctica
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -35,14 +34,13 @@ variable = 22;
 variable = true;
 console.log(variable);
 
-
 // Inferencia de tipos
 // =====================
 
 // TypeScript infiere el tipo automáticamente en la declaración con valor
 let greeting = 'Hola mundo';
-    // ^?
-//@ts-expect-error El tipo 'number' no se puede asignar al tipo 'string' 
+// ^?
+//@ts-expect-error El tipo 'number' no se puede asignar al tipo 'string'
 greeting = 22;
 render(greeting);
 
@@ -62,13 +60,16 @@ const user = { name: 'Juan', age: 30 };
 console.log(user);
 console.log(user);
 // @ts-expect-error La propiedad 'job' no existe en el tipo...
-user.job = "Developer";
+user.job = 'Developer';
 // @ts-expect-error El tipo 'string' no se puede asignar al tipo 'number'
-user.age = "31";
+user.age = '31';
 
 // En lugar de inferir el tipo, se puede anotar explícitamente
 // utilizando un type inline (o type literal) o una interfaz
-const user1: { name: string; age: number; job?: string } = { name: 'María', age: 27 };
+const user1: { name: string; age: number; job?: string } = {
+    name: 'María',
+    age: 27,
+};
 user1.job = 'Designer';
 
 // También se puede usar la palabra clave Record<K, V>
@@ -86,22 +87,21 @@ const personConst = { name: 'Ana', age: 25 } as const;
 // @ts-expect-error La propiedad 'age' es de solo lectura.
 personConst.age = 26;
 
-
 // Arrays
 // =======
 
 // Se crea como const para que no se puedan reasignar
 // La inferencia de tipos en arrays vacíos es de tipo any[]
 // Por eso es recomendable anotarlos explícitamente
-const  numbers: number[] = [];
+const numbers: number[] = [];
 numbers.push(1);
 numbers.push(2);
 // @ts-expect-error El tipo 'string' no se puede asignar al tipo 'number'
-numbers.push("3");
+numbers.push('3');
 
 // Si se desconoce el tipo, se puede usar unknown
 export const data: unknown[] = []; // array de never
-export const data4 = []
+export const data4 = [];
 
 // El tipo unknown
 // ===============
@@ -111,7 +111,7 @@ const bad: unknown = 2;
 
 // Para usar el valor, es necesario pasar de unknown a un tipo conocido
 
-// Puede hacerse mediante 
+// Puede hacerse mediante
 // aserción o casting de tipos
 
 // La aserción puede llevar a un error en tiempo de ejecución
@@ -134,10 +134,9 @@ if (typeof bad === 'number') {
 const userTuple: [string, number] = ['Pedro', 35];
 userTuple[0] = 'Pablo';
 // @ts-expect-error El tipo de tupla ... no tiene ningún elemento en el índice "2".
-userTuple[2] = "36";
+userTuple[2] = '36';
 // ¿Paradójicamente? push sí permite añadir elementos
 userTuple.push(36);
-
 
 // Tipos propios
 // ===============
@@ -170,8 +169,18 @@ users.push(user2);
 // No importa si fue creado con la misma definición de tipo
 users.push({ id: 3, name: 'Luis', age: 28, job: 'Designer' });
 
-export const user3: User = { id: 3, name: 'SuperAdmin', age: 40, job: 'Manager' };
-export const user4: UserI = { id: 4, name: 'SuperAdmin', age: 40, job: 'Manager' };
+export const user3: User = {
+    id: 3,
+    name: 'SuperAdmin',
+    age: 40,
+    job: 'Manager',
+};
+export const user4: UserI = {
+    id: 4,
+    name: 'SuperAdmin',
+    age: 40,
+    job: 'Manager',
+};
 // Destructuring y spread
 export const user5: UserI[] = [{ ...user2, id: 1 }];
 
@@ -202,7 +211,6 @@ interface AdminI extends UserI {
 }
 
 export const admin: AdminI = { id: 1, name: 'Admin', age: 40, role: 'admin' };
-
 
 // Tipos híbridos con intersección de tipos
 // =======================================
@@ -285,9 +293,12 @@ export const area = (s: Shape): number => {
             return s.width * s.height;
         case 'circle':
             return Math.PI * s.radius ** 2;
-        default:
+        default: {
             // Exhaustividad
-            const imposible: never = s;
-            return imposible; // Si llegamos aquí, s es de tipo 'never'
+            // Si llegamos aquí, s debe ser de tipo 'never'
+            // o dará un error en la asignación a _impossible
+            const _impossible: never = s;
+            return _impossible;
+        }
     }
 };

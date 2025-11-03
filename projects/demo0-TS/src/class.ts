@@ -86,6 +86,8 @@ employee1.greet();
 
 // Record type
 
+/* eslint-disable */
+
 const array: number[] = []
 array.push(1)
 array.push(2)
@@ -104,3 +106,4 @@ record.age = '27'
 
 const st : string = '';
 
+/* eslint-enable*/

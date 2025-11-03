@@ -6,7 +6,8 @@ import tseslint from 'typescript-eslint';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
-    globalIgnores(['dist']),
+    // Ignora artefactos generados en cualquier paquete del monorepo
+    globalIgnores(['**/dist/**', '**/node_modules/**']),
     {
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
@@ -29,6 +30,10 @@ export default defineConfig([
             ...reactHooks.configs.recommended.rules,
             '@typescript-eslint/consistent-type-definitions': 'off',
             '@typescript-eslint/explicit-function-return-type': 'warn',
+            // Workaround: avoid crash "typeParameters.params is not iterable" in
+            // @typescript-eslint/unified-signatures with TS 5.9 + ESLint 9.x.
+            // See: https://github.com/typescript-eslint/typescript-eslint/issues (related)
+            '@typescript-eslint/unified-signatures': 'off',
             'react-refresh/only-export-components': [
                 'warn',
                 { allowConstantExport: true },
