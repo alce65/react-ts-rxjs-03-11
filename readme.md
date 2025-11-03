@@ -2,6 +2,8 @@
 
 - [TYPESCRIPT Y PROGRAMACIÓN REACTIVA](#typescript-y-programación-reactiva)
   - [OBJETIVOS](#objetivos)
+  - [Desarrollo](#desarrollo)
+    - [Día !](#día-)
 
 DURACIÓN: 45 horas
 
@@ -20,3 +22,15 @@ Avanzado
 - Consumir **APIs asíncronas** de manera eficiente con RxJS, gestionando flujos de datos desde peticiones HTTP y aplicando técnicas avanzadas para trabajar con WebSockets y datos en tiempo real en React.
 - Realizar **testing** de aplicaciones reactivas mediante la configuración de Jest con TypeScript y RxJS, simulando flujos de datos y eventos en pruebas unitarias, y validando el comportamiento de observables y hooks personalizados.
 - Aplicar **buenas prácticas** y **optimización** en la programación reactiva, gestionando correctamente las suscripciones, evitando memory leaks, y optimizando el rendimiento de las aplicaciones reactivas mediante operadores avanzados de RxJS.
+
+## Desarrollo
+
+### Día !
+
+- Presentación
+- Instalación monorepo {monorepo}
+- Configuración proyecto React + TS + Vite {configuracion}
+
+{descanso}
+
+- TS
