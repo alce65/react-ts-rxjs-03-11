@@ -6,6 +6,14 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
 
+  resolve: {
+    alias: {
+      '@': '/src',
+      '@assets': '/src/assets',
+      '@components': '/src/components',
+    },
+  },
+
   test: {
     globals: true,
     environment: 'jsdom',
