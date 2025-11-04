@@ -4,6 +4,7 @@
 - todos en la carpeta components/core, cada uno con su propia carpeta
 - **Counter** en la carpeta components/counter
 - Cada componente incluye su css (si lo necesita)
+- El titulo de la app se guarda en APP.tsx
 - Opcionalmente , cada componente incluye su test unitario con Vitest
   Se puede dejar los tests para más adelante: los haremos juntos
 

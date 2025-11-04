@@ -4,6 +4,8 @@
   - [OBJETIVOS](#objetivos)
   - [Desarrollo](#desarrollo)
     - [Día 1 - 03/11/2026](#día-1---03112026)
+    - [Día 2 - 04/11/2026](#día-2---04112026)
+    - [Día 3 - 05/11/2026](#día-3---05112026)
 
 DURACIÓN: 45 horas
 
@@ -33,7 +35,7 @@ Avanzado
 - Configuración proyecto React + TS + Vite
 - Incorporación de Vitest
 
-- [descanso]
+[descanso]
 
 - TypeScript: proyecto básico (pure TS) en el monorepo
 - Introducción a TypeScript:
@@ -42,11 +44,46 @@ Avanzado
   - clases (OOP)
   - narrowing: type guards, discriminated unions
 
-<!-- 
-
-### Día 2 - 10/11/2026
+### Día 2 - 04/11/2026
 
 - React básico
-- Ejercicio práctico: proyecto React + TS + Vite -> convertir a componentes funcionales 
- 
--->
+- Ejercicio práctico: proyecto React + TS + Vite -> convertir a componentes funcionales
+
+  - Solución de los problemas de instalación
+  - Tiempo para el ejercicio
+
+- **Footer**,
+  - Estructura de carpetas para componentes
+  - Componentes funcionales y elementos JSX. Tipado con TypeScript
+  - Estilos CSS: archivos CSS por componente
+  - Tests unitarios con Vitest
+    - Eleemntos de los tests. Matching
+    - Testing Library.Querying
+
+[descanso]
+
+- **Header**
+  - Props y tipado de props con TypeScript
+- **Card**
+  - Prop children y su tipado. Prop drilling
+- **Layout**
+- **App**
+  - Composición de componentes
+- **Counter**
+  - Uso de hooks básicos: useState. Tipado del estado con TypeScript
+  - Eventos y su tipado en TypeScript
+
+### Día 3 - 05/11/2026
+
+- Tipado de eventos en TypeScript
+  - Eventos especoíficos
+  - target vs currentTarget. Casting
+- Componente Counter 2Buttons
+
+  - Testing del componente
+
+- Formularios controlados vs no controlados
+  - Servicio usuarios (mock)
+  - Componente LoginForm (controlado)
+  - Componente RegisterForm (no controlado)
+  - Tests de formularios
