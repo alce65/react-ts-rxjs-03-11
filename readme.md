@@ -52,23 +52,23 @@ Avanzado
   - Solución de los problemas de instalación
   - Tiempo para el ejercicio
 
-- **Footer**,
+- **Footer**
   - Estructura de carpetas para componentes
   - Componentes funcionales y elementos JSX. Tipado con TypeScript
   - Estilos CSS: archivos CSS por componente
   - Tests unitarios con Vitest
-    - Eleemntos de los tests. Matching
-    - Testing Library.Querying
+    - Elementos de los tests. Matching
+    - Testing Library. Querying
 
 [descanso]
 
 - **Header**
   - Props y tipado de props con TypeScript
 - **Card**
-  - Prop children y su tipado. Prop drilling
+  - Prop children y su tipado
 - **Layout**
 - **App**
-  - Composición de componentes
+  - Composición de componentes. Prop drilling
 - **Counter**
   - Uso de hooks básicos: useState. Tipado del estado con TypeScript
   - Eventos y su tipado en TypeScript
