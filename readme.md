@@ -83,7 +83,41 @@ Avanzado
   - Testing del componente
 
 - Formularios controlados vs no controlados
+
   - Servicio usuarios (mock)
   - Componente LoginForm (controlado)
   - Componente RegisterForm (no controlado)
   - Tests de formularios
+
+- Add project demo1 clonado de Demo1
+
+[descanso]
+
+- Programación asíncrona v. reactiva
+  - Conceptos
+  - Promesas: then v. async/await
+    - Servicio getData basado en promesas
+    - Test del servicio
+  - Componente Search con promesas
+    - Consumo del servicio getData
+
+<!--
+
+### Día 4 - 06/11/2026
+
+- Componente Search con promesas (continuación)
+  - Test del componente
+- Componente Search optimizado con debounce (promesas)
+  - Test del componente
+- Cancelación de peticiones (promesas)
+  - Test del componente
+- Conceptos de programación reactiva
+
+[descanso]
+
+- Patrones de diseño reactivos
+  - Observer
+  - Pub/Sub
+- Introducción a RxJS
+  - Observables
+-->
