@@ -11,8 +11,17 @@ export const Search: React.FC = () => {
     const handleInput = async (event: React.FormEvent<HTMLInputElement>): Promise<void> => {
         const {value } = event.currentTarget;
         // Simular resultados de búsqueda
-        const data = await getData(value);
-        setResults(data);
+        try {
+                const data = await getData(value);
+                setResults(data); 
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error('Error fetching data:', error.message);
+            } else {
+                console.error('Unknown error fetching data');
+            }
+            setResults([]);
+        }
     }
     
       return (

@@ -8,7 +8,6 @@ vi.mock('../../services/data.service');
 const mockData = [{ id: 1, title: 'sample data' }];
 
 describe('Search component', () => {
-
     afterEach(() => {
         vi.clearAllMocks();
     });
@@ -37,22 +36,16 @@ describe('Search component', () => {
         });
     });
 
+    test('should catch and log error if getData fails', async () => {
+        vi.spyOn(console, 'error').mockImplementation(() => undefined);
+        (getData as Mock).mockRejectedValueOnce(new Error('Fetch error'));
+        render(<Search />);
+        const input = screen.getByRole('textbox');
 
-    // ToDo añadir control de errores en el componente Search
-    // y descomentar el siguiente test
-
-    // test('should catch and log error if getData fails', async () => {
-    //     const consoleErrorSpy = vi
-    //         .spyOn(console, 'error')
-    //         .mockImplementation(() => undefined);
-    //     (getData as Mock).mockRejectedValueOnce(new Error('Fetch error'));
-    //     render(<Search />);
-    //     const input = screen.getByRole('textbox');
-
-    //     await userEvent.type(input, 'error');
-    //     await waitFor(() => {
-    //         expect(getData).toHaveBeenCalledWith('error');
-    //         expect(consoleErrorSpy).toHaveBeenCalled();
-    //     });
-    // });
+        await userEvent.type(input, 'error');
+        await waitFor(() => {
+            expect(getData).toHaveBeenCalledWith('error');
+            expect(console.error).toHaveBeenCalled();
+        });
+    });
 });
