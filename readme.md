@@ -3,10 +3,13 @@
 - [TYPESCRIPT Y PROGRAMACIÓN REACTIVA](#typescript-y-programación-reactiva)
   - [OBJETIVOS](#objetivos)
   - [Desarrollo](#desarrollo)
-    - [Día 1 - Lunes 03/11/2026](#día-1---lunes-03112026)
-    - [Día 2 - Martes 04/11/2026](#día-2---martes-04112026)
-    - [Día 3 - Miércoles 05/11/2026](#día-3---miércoles-05112026)
-    - [Día 4 - Jueves 06/11/2026](#día-4---jueves-06112026)
+    - [Semana 1](#semana-1)
+      - [Día 1 - Lunes 03/11/2026](#día-1---lunes-03112026)
+      - [Día 2 - Martes 04/11/2026](#día-2---martes-04112026)
+      - [Día 3 - Miércoles 05/11/2026](#día-3---miércoles-05112026)
+      - [Día 4 - Jueves 06/11/2026](#día-4---jueves-06112026)
+    - [Semana 2](#semana-2)
+    - [Semana 3](#semana-3)
 
 DURACIÓN: 45 horas
 
@@ -28,7 +31,9 @@ Avanzado
 
 ## Desarrollo
 
-### Día 1 - Lunes 03/11/2026
+### Semana 1
+
+#### Día 1 - Lunes 03/11/2026
 
 - Presentación: formador y alumnos
 - Introducción: curso, temario, objetivos, metodología, herramientas previas
@@ -45,7 +50,7 @@ Avanzado
   - clases (OOP)
   - narrowing: type guards, discriminated unions
 
-### Día 2 - Martes 04/11/2026
+#### Día 2 - Martes 04/11/2026
 
 - React básico
 - Ejercicio práctico: proyecto React + TS + Vite -> convertir a componentes funcionales
@@ -74,7 +79,7 @@ Avanzado
   - Uso de hooks básicos: useState. Tipado del estado con TypeScript
   - Eventos y su tipado en TypeScript
 
-### Día 3 - Miércoles 05/11/2026
+#### Día 3 - Miércoles 05/11/2026
 
 - Tipado de eventos en TypeScript
   - Eventos específicos
@@ -102,7 +107,7 @@ Avanzado
   - Componente Search con promesas
     - Consumo del servicio getData
 
-### Día 4 - Jueves 06/11/2026
+#### Día 4 - Jueves 06/11/2026
 
 - Componente Search con promesas (continuación)
   - Test del componente
@@ -114,14 +119,14 @@ Avanzado
 
 - Patrones de diseño reactivos
   - Introducción
-  - Observer
+  - Iterator
 
 [descanso]
 
 - Patrones de diseño reactivos (continuación)
 
-  - Observer: implementación en TypeScript y JS
-  - Pub/Sub
+  - Iterator: implementación en TypeScript y JS
+  - Pub/Sub (Observer)
   - Implementación de Pub/Sub en TypeScript: Event manager
   - Ventajas de Pub/Sub
   - Estrategias Push v. Pull
@@ -130,6 +135,36 @@ Avanzado
   - Observables
   - Tipos: cold v. hot
 
+### Semana 2
+
+Previsión semanal:
+
+Observable cold. Suscripciones. ¿Observables hot?
+Operadores (Lista). Creación de observables
+Typescript avanzado (Mod. 2)
+Typecript y asincronía. Manejo de errores (Mod. 2)
+
+Hooks Perdsonalizados y RxJS (Mod. 3)
+Observables RxJS en componentes de react (Mod. 3)
+
 <!--
-### Día 5 - Lunes 10/11/2026
+#### Día 5 - Lunes 10/11/2026
+#### Día 6 - Martes 11/11/2026
+#### Día 7 - Miércoles 12/11/2026
+#### Día 8 - Jueves 13/11/2026
+-->
+
+### Semana 3
+
+Previsión semanal:
+
+Observables RxJS en componentes de react (Mod. 3)
+Http Client (Mod. 4)
+Gestión del estado. Subjects (Mod. 5)
+
+<!--
+#### Día 9 - Lunes 17/11/2026
+#### Día 10 - Martes 18/11/2026
+#### Día 11 - Miércoles 19/11/2026
+#### Día 12 - Jueves 20/11/2026
 -->

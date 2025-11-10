@@ -45,25 +45,16 @@
   - [Introducción a RxJS: Reactive Extensions for JavaScript](#introducción-a-rxjs-reactive-extensions-for-javascript)
     - [Observables](#observables)
       - [Tipos de observables](#tipos-de-observables)
-      - [Implementación de observables cold (Observable)](#implementación-de-observables-cold-observable)
-        - [Suscriptores en RxJS](#suscriptores-en-rxjs)
-        - [Errores y finalización en observables cold](#errores-y-finalización-en-observables-cold)
-      - [Observables hot: Subject](#observables-hot-subject)
-        - [BehaviorSubject](#behaviorsubject)
-        - [ReplaySubject](#replaysubject)
-        - [AsyncSubject](#asyncsubject)
-    - [Integración de RxJS con Angular](#integración-de-rxjs-con-angular)
-    - [Integración de RxJS con ReactJS](#integración-de-rxjs-con-reactjs)
+    - [Implementación de observables cold (Observable)](#implementación-de-observables-cold-observable)
+      - [Suscriptores en RxJS](#suscriptores-en-rxjs)
+      - [Errores y finalización en observables cold](#errores-y-finalización-en-observables-cold)
+    - [Observables hot: Subject](#observables-hot-subject)
+      - [BehaviorSubject](#behaviorsubject)
+      - [ReplaySubject](#replaysubject)
+      - [AsyncSubject](#asyncsubject)
   - [Operaciones con Observables en RxJs](#operaciones-con-observables-en-rxjs)
-    - [Operadores en RxJS](#operadores-en-rxjs)
-      - [Operadores de creación](#operadores-de-creación)
-      - [Operadores de control (filtrado)](#operadores-de-control-filtrado)
-      - [Operadores temporales](#operadores-temporales)
-      - [Operadores de transformación](#operadores-de-transformación)
-      - [Operadores de utilidad](#operadores-de-utilidad)
-      - [Operadores de manejo de errores](#operadores-de-manejo-de-errores)
-        - [Operadores de combinación](#operadores-de-combinación)
     - [Creación de Observables](#creación-de-observables)
+      - [Operadores de creación](#operadores-de-creación)
       - [A partir de Eventos](#a-partir-de-eventos)
       - [A partir de Promesas](#a-partir-de-promesas)
       - [A partir de un conjunto de datos](#a-partir-de-un-conjunto-de-datos)
@@ -71,9 +62,35 @@
         - [A partir de un intervalo de tiempo (setInterval)](#a-partir-de-un-intervalo-de-tiempo-setinterval)
         - [En un momento determinado (setTimeout)](#en-un-momento-determinado-settimeout)
         - [Como resultado de una petición HTTP](#como-resultado-de-una-petición-http)
-    - [Gestión de observables y suscripciones](#gestión-de-observables-y-suscripciones)
-      - [En Angular](#en-angular)
-      - [En React](#en-react)
+    - [Operadores en RxJS y la función pipe](#operadores-en-rxjs-y-la-función-pipe)
+      - [Operadores de control (filtrado)](#operadores-de-control-filtrado)
+      - [Operadores temporales](#operadores-temporales)
+      - [Operadores de transformación](#operadores-de-transformación)
+      - [Operadores de utilidad](#operadores-de-utilidad)
+      - [Operadores de manejo de errores](#operadores-de-manejo-de-errores)
+        - [Operadores de combinación](#operadores-de-combinación)
+  - [Integración de RxJS con Angular](#integración-de-rxjs-con-angular)
+  - [Integración de RxJS con ReactJS](#integración-de-rxjs-con-reactjs)
+    - [Observables y estado](#observables-y-estado)
+      - [🧿Componente ListNames: Observables y estado](#componente-listnames-observables-y-estado)
+      - [Observables externos o internos al componente](#observables-externos-o-internos-al-componente)
+      - [👁️‍🗨️Test del componente ListNames](#️️test-del-componente-listnames)
+    - [Observables a partir de eventos. Operador fromEvent y de transformación](#observables-a-partir-de-eventos-operador-fromevent-y-de-transformación)
+      - [🧿Componente ClickCounter con el evento click" del ratón](#componente-clickcounter-con-el-evento-click-del-ratón)
+      - [👁️‍🗨️Test del componente ClickCounter](#️️test-del-componente-clickcounter)
+      - [Algunos operadores de transformación](#algunos-operadores-de-transformación)
+      - [Eventos más allá del click](#eventos-más-allá-del-click)
+        - [🧿Componente MouseTracker con el evento "mousemove" del ratón](#componente-mousetracker-con-el-evento-mousemove-del-ratón)
+        - [👁️‍🗨️Test del componente MouseTracker](#️️test-del-componente-mousetracker)
+    - [Observable e intervalos](#observable-e-intervalos)
+      - [🧿Componente IntervalCounter con observable de intervalos](#componente-intervalcounter-con-observable-de-intervalos)
+      - [👁️‍🗨️Test del componente IntervalCounter](#️️test-del-componente-intervalcounter)
+  - [Gestión de observables y suscripciones](#gestión-de-observables-y-suscripciones)
+    - [En Angular](#en-angular)
+    - [En React](#en-react)
+    - [Operadores de control y desuscripción automática en componentes React](#operadores-de-control-y-desuscripción-automática-en-componentes-react)
+      - [🧿Componente IntervalCounter2 sin desuscripción manual](#componente-intervalcounter2-sin-desuscripción-manual)
+      - [👁️‍🗨️Test del componente IntervalCounter2](#️️test-del-componente-intervalcounter2)
 
 ## Propuesta inicial del módulo
 
@@ -1218,7 +1235,27 @@ Los observables son la versión push de un iterator, implementando de forma est�
 
 Esta librería se integra en un proyecto más extenso, [ReactiveX](http://reactivex.io/), que tiene implementaciones en muchos lenguajes (Java, C#, Python, Swift, etc).
 
+Surgió como parte de un proyecto de Microsoft, conocido como **Live Labs Volta**, para llevar las características de .NET a JavaScript, que posteriormente fue abandonado al sustituirlo por el desarrollo de Typescript. EL proyecto fue retomado en el marco de las **Reactive Extensions** (Rx) con su propia fundación, y se implementó no solo en .NET, portándose a otros lenguajes, incluido JavaScript.
+
+El primer responsable de la librería RxJS fue [Matthew Podwysocki](https://github.com/mattpodwysocki) y posteriormente, y hasta la fecha, quedó en manos de [Ben Lesh](https://github.com/benlesh).
+
 El uso de esta librería, dada su aproximación funcional, usando de forma declarativa la composición de funciones, que se encadenan para formar el flujo de datos, da lugar a lo que se conoce como **programación reactiva funcional** (RFP, "Reactive Functional Programming").
+
+La librería aparece como una dependencia fundamental en Angular, que la usan para gestionar flujos de datos asíncronos, como las peticiones HTTP o eventos del DOM. Pero, sin que sea tan conocido esta presente en gran número de productos no ligados a Angular como:
+
+- Vue
+- Svelte
+- Redux
+- Tanstack (React Query)
+- React Router
+- MobX
+- tRPC
+- XState
+- Relay
+- Recoil
+- Apollo GraphQL
+
+De [Ben Lesh - RXJS 8: ENDING OPERATOR MADNESS - RenderATL 2023](https://www.youtube.com/watch?v=oJyEFAqQ7x0)
 
 Los tres elementos clave de RxJS son:
 
@@ -1271,9 +1308,11 @@ pero eso es propio del protocolo, no de los observables-
   - **Multicast**: Cada suscripción comparte el mismo flujo de datos
   - **Infinitos**: Emite un número infinito de datos. En este caso es necesario des-suscribirse manualmente.
 
-#### Implementación de observables cold (Observable)
+### Implementación de observables cold (Observable)
 
-Por convenio, los observables terminan con el signo $, para diferenciarlos de otras variables y se pueden crear utilizando operadores de creación, que luego veremos o directamente con el constructor de la clase Observable.
+Por convenio, los observables terminan con el signo $, para diferenciarlos de otras variables, lo que se conoce como **nomenclatura finlandesa** ([finish notation](https://benlesh.medium.com/observables-and-finnish-notation-df8356ed1c9b)), por haber sido propuesta por André Staltz.
+
+Los observables se pueden crear utilizando operadores de creación, que luego veremos o directamente con el constructor de la clase Observable.
 
 ```ts
 import { Observable } from 'rxjs';
@@ -1296,7 +1335,7 @@ Por convenio, tal como recoge el tipado:
 
 - la función que se pasa al constructor se denomina `subscribe` y recibe como parámetro un objeto `subscriber`, responsable de comunicarse con el suscriptor, que tiene los métodos `next`, `error` y `complete` para emitir datos, errores y completar el flujo respectivamente.
 
-##### Suscriptores en RxJS
+#### Suscriptores en RxJS
 
 Al suscribirnos a un observable le proporcionamos la callback que se ejecutara ante cada dato
 
@@ -1360,7 +1399,7 @@ Valor recibido en subs2: 5
 Observable completado
 ```
 
-##### Errores y finalización en observables cold
+#### Errores y finalización en observables cold
 
 ```ts
 import { Observable } from 'rxjs';
@@ -1404,7 +1443,7 @@ Error: Se produjo un error en el observable ...
 
 Cuando se produce un error, el observable se cancela, deja de emitir valores y no se llama al callback de complete.
 
-#### Observables hot: Subject
+### Observables hot: Subject
 
 Los [Subject](https://rxjs.dev/guide/subject) y demás **"hot observables"** son observables y observadores al mismo tiempo, es decir, pueden emitir valores y suscribirse a ellos.
 
@@ -1463,7 +1502,7 @@ Existen varias clases en RxJS que extienden la clase Subject y proporcionan func
 - **ReplaySubject**
 - **AsyncSubject**
 
-##### BehaviorSubject
+#### BehaviorSubject
 
 Mantiene el último valor emitido y lo emite a nuevos suscriptores inmediatamente después de la suscripción.
 
@@ -1500,7 +1539,7 @@ subject.next(3); // Este valor no se emitirá
 subscription.unsubscribe();
 ```
 
-##### ReplaySubject
+#### ReplaySubject
 
 Almacena un número determinado de valores emitidos y los emite a nuevos suscriptores.
 
@@ -1540,7 +1579,7 @@ subject.next(3); // Este valor no se emitirá
 subscription.unsubscribe();
 ```
 
-##### AsyncSubject
+#### AsyncSubject
 
 Emite solo su último valor cuando el observable se completa
 
@@ -1578,88 +1617,21 @@ subscription.unsubscribe();
 
 Si descomentamos la línea del error, el AsyncSubject emitirá el error y no emitirá ningún valor, ya que nunca se completa.
 
-### Integración de RxJS con Angular
-
-RxJS está integrado en Angular a través del módulo HttpClient y el sistema de estados reactivos (Reactive Forms, State Management, etc).
-
-Cuando se utiliza **HttpClient** la respuesta del servidor HTTP es un observable **Cold**, ya que cada suscripción crea un nuevo flujo de datos que se completa y finaliza al llegar la respuesta Http o al cabo de un tiempo si ésta no llega.
-
-```ts repo.service.ts
-  getPosts(): Observable<any> {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
-  }
-```
-
-```ts component.ts
-  public repoService inject(RepoService): any[] = [];
-  const observable$ = this.repoService.getPosts();
-  observable$.subscribe( data => console.log(data));
-```
-
-El patrón declarativo para este caso usaría el pipe async en el template
-
-```ts component.ts
-  public repoService inject(RepoService): any[] = [];
-```
-
-```html component.ts
-@if(repoService.getPosts() | async; as posts) { @for(post of posts; trackBy:
-post.id) {
-<div *ngFor="let post of ">{{ post.title }}</div>
-} }
-```
-
-Los **estados** reactivos de Angular son observables **Hot**, basados en algún tipo de Subject, de modo que pueden compartirse entre todos los componentes que los usan.
-
-```ts state.service
-  private stateSubject = new BehaviorSubject<State>({});
-  public state$ = this.stateSubject.asObservable();
-```
-
-```ts component.ts
-  public stateService inject(StateService): State = {};
-  const observable$ = this.stateService.state$;
-```
-
-```html component.ts
-@if(stateService.state$ | async; as state) {
-<div>{{ state.value }}</div>
-}
-```
-
-### Integración de RxJS con ReactJS
-
-RxJS se integra bien con ReactJS, especialmente en componentes funcionales usando hooks como `useEffect` y `useState`. Permite manejar flujos de eventos y datos de manera declarativa.
-
-Para usar RxJS en React, primero se instala la librería:
-
-```bash
-npm install rxjs
-```
-
-Para integrar RxJS en React, se pueden usar hooks personalizados para suscribirse a observables y actualizar el estado del componente cuando llegan nuevos datos.
-
-En las lecciones prácticas convertiremos el diseño por fases en código RxJS paso a paso.
-
 ## Operaciones con Observables en RxJs
 
-### Operadores en RxJS
+### Creación de Observables
 
-Los operadores son funciones que permiten transformar, filtrar y combinar flujos de datos (observables) de manera declarativa. Estas funciones toman un observable como entrada y devuelven un nuevo observable como salida, por lo que es posible encadenarlos para crear flujos complejos.
+Existen muchas APIs que utilizan la estrategia push y el patrón Observer, como son
 
-Veamos un ejemplo de algunos operadores comunes encadenados usando el método `pipe`:
+- los eventos del DOM (DOM Events)
+- las peticiones HTTP (XMLHttpRequest, fetch)
+- WebSockets
+- Server-Sent Events (SSE)
+- Node Streams
+- Service Workers
+- setInterval
 
-```ts
-observable$
-  .pipe(
-    map((data) => data.value),
-    filter((value) => value > 10),
-    tap((value) => console.log(value)),
-    catchError((error) => of('Error: ' + error.message)),
-    finalize(() => console.log('Complete'))
-  )
-  .subscribe((data) => console.log(data));
-```
+RxJS proporciona varios operadores para crear observables a partir de estas APIs.
 
 #### Operadores de creación
 
@@ -1677,75 +1649,6 @@ Operadores comunes para la creación de observables:
 - **defer**: Crea un observable que se crea cada vez que se suscribe
 - **ajax** del paquete `rxjs/ajax`
 - **fromFetch** del paquete `rxjs/fetch` incorporado en la version 6.5.0
-
-#### Operadores de control (filtrado)
-
-- **take**: Emite un número determinado de valores emitidos por un observable
-- **takeUntil**: Emite los valores emitidos por un observable hasta que se emita un valor por otro observable
-- **takeWhile**: Emite los valores emitidos por un observable mientras se cumpla una condición
-- **skip**: Ignora un número determinado de valores emitidos por un observable
-- **skipUntil**: Ignora los valores emitidos por un observable hasta que se emita un valor por otro observable
-- **skipWhile**: Ignora los valores emitidos por un observable mientras se cumpla una condición
-
-#### Operadores temporales
-
-Operadores como debounce y throttle que permiten controlar la frecuencia de emisión de valores:
-
-- **debounce**: Emite un valor después de un tiempo determinado desde la última emisión
-- **throttle**: Emite un valor y luego ignora los valores emitidos durante un tiempo determinado
-- **debounceTime**: Emite un valor después de un tiempo determinado desde la última emisión
-- **throttleTime**: Emite un valor y luego ignora los valores emitidos durante un tiempo determinado
-- **delay**: Retrasa la emisión de los valores emitidos por un observable
-- **timeout**: Emite un error si no se emite ningún valor en un tiempo determinado
-
-#### Operadores de transformación
-
-Operadores comunes para la transformación de observables:
-
-- **map**: Transforma los valores emitidos por un observable
-- **scan**: Acumula los valores emitidos por un observable, emitiendo el resultado en cada paso
-- **reduce**: Acumula los valores emitidos por un observable, emitiendo el resultado al final
-- **filter**: Filtra los valores emitidos por un observable
-
-- **switchMap**: Transforma los valores emitidos por un observable en otro observable
-- **mergeMap**: Transforma los valores emitidos por un observable en otro observable y los combina
-- **concatMap**: Transforma los valores emitidos por un observable en otro observable y los concatena
-- **exhaustMap**: Transforma los valores emitidos por un observable en otro observable y los ignora hasta que se complete
-
-#### Operadores de utilidad
-
-- **tap**: Realiza una acción sin modificar los valores emitidos por un observable
-- **finalize**: Realiza una acción cuando un observable se completa
-
-#### Operadores de manejo de errores
-
-- **catchError**: Captura los errores emitidos por un observable y los maneja
-- **throwError**: Emite un error
-- **retry**: Reintenta emitir los valores emitidos por un observable un número determinado de veces
-
-##### Operadores de combinación
-
-Operadores comunes para la combinación de observables:
-
-- **concat**: Combina los valores emitidos por varios observables en un solo observable
-- **merge**: Combina los valores emitidos por varios observables en un solo observable
-- **combineLatest**: Combina los valores emitidos por varios observables en un solo observable, emitiendo un array con los últimos valores emitidos
-- **zip**: Combina los valores emitidos por varios observables en un solo observable, emitiendo un array con los valores emitidos en el mismo índice
-- **forkJoin**: Combina los valores emitidos por varios observables en un solo observable, emitiendo un array con los últimos valores emitidos por cada observable
-
-### Creación de Observables
-
-Existen muchas APIs que utilizan la estrategia push y el patrón Observer, como son
-
-- los eventos del DOM (DOM Events)
-- las peticiones HTTP (XMLHttpRequest, fetch)
-- WebSockets
-- Server-Sent Events (SSE)
-- Node Streams
-- Service Workers
-- setInterval
-
-RxJS proporciona varios operadores para crear observables a partir de estas APIs.
 
 #### A partir de Eventos
 
@@ -1902,21 +1805,27 @@ const fetch$ = fromFetch('https://jsonplaceholder.typicode.com/posts/1');
 fetch$.subscribe((response) => console.log(response));
 ```
 
-### Gestión de observables y suscripciones
+### Operadores en RxJS y la función pipe
 
-La des-suscripción es un aspecto crucial en la gestión de observables en RxJS, especialmente para evitar fugas de memoria y comportamientos inesperados en aplicaciones que manejan múltiples flujos de datos asíncronos.
+Los **operadores** son funciones que permiten transformar, filtrar y combinar flujos de datos (observables) de manera declarativa. Estas funciones toman un observable como entrada y devuelven un nuevo observable como salida, por lo que es posible encadenarlos para crear flujos complejos.
 
-La forma imperativa o "manual" de gestionar las suscripciones es guardar la suscripción en una variable y llamar a su método `unsubscribe` cuando ya no se necesite.
+Para usar un operador, se aplica al observable usando el método `pipe`, que encadena múltiples operadores.
+
+Veamos un ejemplo de algunos operadores comunes encadenados usando el método `pipe`:
 
 ```ts
-const subscription = observable$.subscribe((data) => console.log(data));
-// más tarde, cuando ya no se necesite
-subscription.unsubscribe();
+observable$
+  .pipe(
+    map((data) => data.value),
+    filter((value) => value > 10),
+    tap((value) => console.log(value)),
+    catchError((error) => of('Error: ' + error.message)),
+    finalize(() => console.log('Complete'))
+  )
+  .subscribe((data) => console.log(data));
 ```
 
-Sin embargo, en aplicaciones más complejas, especialmente en frameworks como Angular o React, es común utilizar enfoques más estructurados para gestionar las suscripciones.
-
-La base de estos enfoques es el uso de operadores que gestionan automáticamente el completado de un observable y en consecuencia la des-suscripción cuando el observable completa, emite un error o cuando el componente se destruye.
+#### Operadores de control (filtrado)
 
 - **take**: Emite un número determinado de valores emitidos por un observable
 - **takeUntil**: Emite los valores emitidos por un observable hasta que se emita un valor por otro observable
@@ -1925,7 +1834,699 @@ La base de estos enfoques es el uso de operadores que gestionan automáticamente
 - **skipUntil**: Ignora los valores emitidos por un observable hasta que se emita un valor por otro observable
 - **skipWhile**: Ignora los valores emitidos por un observable mientras se cumpla una condición
 
-#### En Angular
+#### Operadores temporales
+
+Operadores como debounce y throttle que permiten controlar la frecuencia de emisión de valores:
+
+- **debounce**: Emite un valor después de un tiempo determinado desde la última emisión
+- **throttle**: Emite un valor y luego ignora los valores emitidos durante un tiempo determinado
+- **debounceTime**: Emite un valor después de un tiempo determinado desde la última emisión
+- **throttleTime**: Emite un valor y luego ignora los valores emitidos durante un tiempo determinado
+- **delay**: Retrasa la emisión de los valores emitidos por un observable
+- **timeout**: Emite un error si no se emite ningún valor en un tiempo determinado
+
+#### Operadores de transformación
+
+Operadores comunes para la transformación de observables:
+
+- **map**: Transforma los valores emitidos por un observable
+- **scan**: Acumula los valores emitidos por un observable, emitiendo el resultado en cada paso
+- **reduce**: Acumula los valores emitidos por un observable, emitiendo el resultado al final
+- **filter**: Filtra los valores emitidos por un observable
+
+- **switchMap**: Transforma los valores emitidos por un observable en otro observable
+- **mergeMap**: Transforma los valores emitidos por un observable en otro observable y los combina
+- **concatMap**: Transforma los valores emitidos por un observable en otro observable y los concatena
+- **exhaustMap**: Transforma los valores emitidos por un observable en otro observable y los ignora hasta que se complete
+
+#### Operadores de utilidad
+
+- **tap**: Realiza una acción sin modificar los valores emitidos por un observable
+- **finalize**: Realiza una acción cuando un observable se completa
+
+#### Operadores de manejo de errores
+
+- **catchError**: Captura los errores emitidos por un observable y los maneja
+- **throwError**: Emite un error
+- **retry**: Reintenta emitir los valores emitidos por un observable un número determinado de veces
+
+##### Operadores de combinación
+
+Operadores comunes para la combinación de observables:
+
+- **concat**: Combina los valores emitidos por varios observables en un solo observable
+- **merge**: Combina los valores emitidos por varios observables en un solo observable
+- **combineLatest**: Combina los valores emitidos por varios observables en un solo observable, emitiendo un array con los últimos valores emitidos
+- **zip**: Combina los valores emitidos por varios observables en un solo observable, emitiendo un array con los valores emitidos en el mismo índice
+- **forkJoin**: Combina los valores emitidos por varios observables en un solo observable, emitiendo un array con los últimos valores emitidos por cada observable
+
+## Integración de RxJS con Angular
+
+RxJS está integrado en Angular a través del módulo HttpClient y el sistema de estados reactivos (Reactive Forms, State Management, etc).
+
+Cuando se utiliza **HttpClient** la respuesta del servidor HTTP es un observable **Cold**, ya que cada suscripción crea un nuevo flujo de datos que se completa y finaliza al llegar la respuesta Http o al cabo de un tiempo si ésta no llega.
+
+```ts repo.service.ts
+  getPosts(): Observable<any> {
+    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+  }
+```
+
+```ts component.ts
+  public repoService inject(RepoService): any[] = [];
+  const observable$ = this.repoService.getPosts();
+  observable$.subscribe( data => console.log(data));
+```
+
+El patrón declarativo para este caso usaría el pipe async en el template
+
+```ts component.ts
+  public repoService inject(RepoService): any[] = [];
+```
+
+```html component.ts
+@if(repoService.getPosts() | async; as posts) { @for(post of posts; trackBy:
+post.id) {
+<div *ngFor="let post of ">{{ post.title }}</div>
+} }
+```
+
+Los **estados** reactivos de Angular son observables **Hot**, basados en algún tipo de Subject, de modo que pueden compartirse entre todos los componentes que los usan.
+
+```ts state.service
+  private stateSubject = new BehaviorSubject<State>({});
+  public state$ = this.stateSubject.asObservable();
+```
+
+```ts component.ts
+  public stateService inject(StateService): State = {};
+  const observable$ = this.stateService.state$;
+```
+
+```html component.ts
+@if(stateService.state$ | async; as state) {
+<div>{{ state.value }}</div>
+}
+```
+
+## Integración de RxJS con ReactJS
+
+RxJS se integra bien con ReactJS, especialmente en componentes funcionales usando hooks como `useEffect` y `useState`. Permite manejar flujos de eventos y datos de manera declarativa.
+
+Para usar RxJS en React, primero se instala la librería:
+
+```bash
+npm install rxjs
+```
+
+### Observables y estado
+
+Tomando un estado, por ejemplo una lista de nombres, la integración más sencilla de RxJS en React es usar un observable como fuente de datos para el estado del componente, que se actualizará en un useEffect al suscribirse al observable.
+
+#### 🧿Componente ListNames: Observables y estado
+
+Para crear el observable usaremos el operador `of`, que crea un observable que emite los valores pasados como argumentos.
+
+```tsx
+import { useEffect, useState } from 'react';
+import { Observable, of } from 'rxjs';
+
+const names = ['Alice', 'Bob', 'Charlie', 'Diana'];
+
+const names$: Observable<string[]> = of(names);
+
+export const ListNamesBasic: React.FC = () => {
+  const [names, setNames] = useState<string[]>([]);
+
+  useEffect(() => {
+    const subscription = names$.subscribe(setNames);
+    return () => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <Card title="Names List from Observable">
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+    </Card>
+  );
+};
+```
+
+EL useEffect es el responsable del side-effect: sincronizar el estado con el observable, suscribiéndose a este último y des-suscribiéndose al desmontar el componente.
+
+> Los conceptos y las API de RxJS y React son muy compatibles: la simbiosis entre ambos se muestra en la forma en que useEffect se alinea con una suscripción de RxJS y cómo la llamada de limpieza del hook es el momento perfecto para cancelar la suscripción.
+
+[RxJS con React - Adam L. Barret](https://dev.to/bitovi/rxjs-with-react-jek)
+
+#### Observables externos o internos al componente
+
+En el ejemplo anterior, el observable existe fuera del componente, como parte del módulo, Esto no suele ser realmente útil, ya que los datos suelen venir de props o de algún servicio externo. Probemos a hacerlo con props.
+
+```tsx
+import { useEffect, useState } from 'react';
+import { Observable, of } from 'rxjs';
+
+const NAMES = ['Alice', 'Bob', 'Charlie', 'Diana'];
+const NAMES$: Observable<string[]> = of(NAMES);
+
+type Props = {
+  names$?: Observable<string[]>;
+};
+
+export const ListNames: React.FC<Props> = ({ names$ = NAMES$ }) => {
+  const [names, setNames] = useState<string[]>([]);
+
+  useEffect(() => {
+    const subscription = names$.subscribe(setNames);
+    return (): void => subscription.unsubscribe();
+  }, [names$]);
+
+  // React Hook useEffect has a missing dependency: 'names$'
+
+  return (
+    <Card title="Names List from Observable">
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+    </Card>
+  );
+};
+```
+
+El linter nos indica que names$ debe ser una dependencia del useEffect, ya que si cambia, debemos volver a suscribirnos al nuevo observable. En este caso esto no es un problema pero lo sería si creamos el observable dentro del componente, ya que en cada render se crearía un nuevo observable y se volvería a suscribir, creando una fuga de memoria.
+
+```tsx
+export const ListNamesIntra: React.FC = () => {
+  const NAMES = ['Alice', 'Bob', 'Charlie', 'Diana'];
+  const names$: Observable<string[]> = of(NAMES);
+  const [names, setNames] = useState<string[]>([]);
+
+  useEffect(() => {
+    console.log('Use effect');
+    const subscription = names$.subscribe(setNames);
+    return (): void => subscription.unsubscribe();
+  }, [names$]);
+
+  return (
+    <Card title="Names List from Observable">
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+    </Card>
+  );
+};
+```
+
+Para evitar este problema, debemos asegurarnos de que el observable no se recrea en cada render. Una forma de hacerlo es usando el hook `useMemo` para memorizar el observable.
+
+```tsx
+import { useEffect, useState, useMemo } from 'react';
+import { Observable, of } from 'rxjs';
+
+export const ListNames: React.FC = () => {
+  const NAMES = ['Alice', 'Bob', 'Charlie', 'Diana'];
+  const names$: Observable<string[]> = useMemo(() => of(NAMES), [NAMES]);
+
+  // Resto del código
+};
+```
+
+En otros casos, si lo que tenemos es una función factory que genera un observable, podemos usar el hook `useCallback` para memorizar la función y evitar que se recree en cada render.
+
+Como veremos más adelante, para integrar RxJS en React, se pueden usar hooks personalizados para suscribirse a observables y actualizar el estado del componente cuando llegan nuevos datos.
+
+#### 👁️‍🗨️Test del componente ListNames
+
+Tomando el caso en que el observable es externo, e.g. por props, como el más realista, vemos que su test se limita a pasar por props un determinado observable y comprobar que sus valores se renderizan correctamente.
+
+```tsx
+import { render, screen } from '@testing-library/react';
+import { ListNames } from './list-names';
+import { of } from 'rxjs';
+
+const mockNames$ = of(['Pepe', 'Rosa', 'Juan', 'Diana']);
+
+describe('ListNames component', () => {
+  // La lista es fija en el componentes
+  // por lo que se testa con los valores esperados
+
+  test('renders names from observable', () => {
+    // Test implementation
+    render(<ListNames names$={mockNames$} />);
+    const listItems = screen.getAllByRole('listitem');
+    expect(listItems).toHaveLength(4);
+    expect(listItems[0]).toHaveTextContent('Pepe');
+    expect(listItems[1]).toHaveTextContent('Rosa');
+    expect(listItems[2]).toHaveTextContent('Juan');
+    expect(listItems[3]).toHaveTextContent('Diana');
+  });
+});
+```
+
+En este componente el observable es síncrono, con un único valor, por lo que el test es muy sencillo.
+
+### Observables a partir de eventos. Operador fromEvent y de transformación
+
+Como ya sabemos los observables pueden crearse a partir de eventos del DOM usando el operador `fromEvent`.
+
+![FromEvent Marble Diagram](./assets/from-event.png)
+
+En React, los elementos del DOM se crean y destruyen dinámicamente, por lo que es una mala practica acceder a ellos directamente (e.g. `querySelector`). El procedimiento correcto es usar referencias (refs) para acceder a los elementos del DOM.
+
+1. Definimos una referencia al elemento del DOM usando `useRef`
+2. Usamos `useEffect` para registrar el elemento del DOM usando la referencia
+
+El valor emitido por el observable creado con `fromEvent` es el evento del DOM, que puede ser tipado usando genéricos. Con frecuencia no se necesita toda la información del evento, por lo que se suelen usar operadores de transformación como `map` para quedarnos con los datos que nos interesan.
+
+![Map Marble Diagram](./assets/map.png)
+
+Veamos un ejemplo en un componente muy sencillo.
+
+#### 🧿Componente ClickCounter con el evento click" del ratón
+
+1. Definimos una referencia al elemento del DOM usando `useRef`
+2. Definimos el estado del componente usando `useState` y almacenando el número de clicks. Previamente tendremos un tipo para las coordenadas
+3. Usamos `useEffect` para
+   - registrar el elemento del DOM usando la referencia
+   - crear el observable y modificar los datos para quedarnos con las coordenadas (map)
+   - suscribirnos a él
+   - limpiar la suscripción cuando el componente se desmonte
+
+Todo lo relativo a la creación del observable y sus transformaciones se hace dentro del useEffect, pero en este caso lo hemos encapsulado en una función que sigue el **patrón factory**, devolviendo un objeto: el observable ya transformado.
+
+```tsx
+export const CounterClicks: React.FC = () => {
+  const startRef = useRef<HTMLButtonElement | null>(null);
+  const [count, setCount] = React.useState(0);
+
+  const createObservable = (): Observable<number> | null => {
+    const btn = startRef.current;
+    if (!btn) return null;
+    const click$ = fromEvent<MouseEvent>(btn, 'click').pipe(map(() => 1));
+    return click$.pipe(scan((acc, curr) => acc + curr, 0));
+  };
+
+  useEffect(() => {
+    const counter$ = createObservable();
+    if (!counter$) return;
+    const subscription = counter$.subscribe(setCount);
+    return (): void => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <Card title="Counter Clicks">
+      <button ref={startRef}>Click count: {count}</button>
+    </Card>
+  );
+};
+```
+
+Al margen de la factory, la relación entre el observable y el estado del componente se establece en el useEffect, que se encarga de la suscripción y des-suscripción, exactamente igual que vimos en el ejemplo del componente ListNames.
+
+#### 👁️‍🗨️Test del componente ClickCounter
+
+Desde el punto de vista del interfaz, el componente se limita a mostrar un botón con el número de clicks, por lo que el test se centra en comprobar que el número de clicks se incrementa al hacer click en el botón. No necesitamos saber si la implementación de la respuesta a eventos la hace un habitual addEventListener o si se gestiona mediante observables.
+
+```tsx
+describe('CounterClicks', () => {
+  test('should render correctly', () => {
+    render(<CounterClicks />);
+    const heading = screen.getByRole('heading', { name: /counter/i });
+    expect(heading).toBeInTheDocument();
+  });
+
+  test('should increment count on button click', () => {
+    render(<CounterClicks />);
+    const button = screen.getByRole('button', { name: /click count/i });
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveTextContent('Click count: 0');
+    // Simular clicks y verificar el conteo
+    button.click();
+    expect(button).toHaveTextContent('Click count: 1');
+    button.click();
+    button.click();
+    expect(button).toHaveTextContent('Click count: 3');
+  });
+});
+```
+
+#### Algunos operadores de transformación
+
+Entre los operadores de transformación más comunes están:
+
+- **map**: Transforma cada valor emitido por un observable aplicando una función a cada valor.
+
+```ts
+import { map } from 'rxjs/operators';
+const doubledNumbers$ = of(1, 2, 3);
+doubledNumbers$.pipe(map((value) => value * 2));
+
+doubledNumbers$.subscribe((value) => console.log(value));
+// Logs: 2, 4, 6
+```
+
+- **filter**: Filtra los valores emitidos por un observable, emitiendo solo aquellos que cumplen una condición.
+
+```ts
+import { filter } from 'rxjs/operators';
+const evenNumbers$ = of(1, 2, 3, 4, 5);
+
+evenNumbers$.pipe(filter((value) => value % 2 === 0));
+
+evenNumbers$.subscribe((value) => console.log(value));
+// Logs: 2, 4
+```
+
+- **reduce**: Acumula los valores emitidos por un observable en un solo valor, aplicando una función reductora.
+
+```ts
+import { reduce } from 'rxjs/operators';
+
+const sum$ = of(1, 2, 3, 4).pipe(reduce((acc, value) => acc + value, 0));
+
+sum$.subscribe((value) => console.log(value));
+// Logs: 10
+```
+
+- **scan**: Similar a reduce, pero emite el valor acumulado en cada paso, no solo al final.
+
+```ts
+import { scan } from 'rxjs/operators';
+
+const accumulated$ = of(1, 2, 3).pipe(scan((acc, value) => acc + value, 0));
+accumulated$.subscribe((value) => console.log(value));
+// Logs: 1, 3, 6
+```
+
+- **distinctUntilChanged**: Emite un valor solo si es diferente del valor anterior, evitando emisiones duplicadas consecutivas.
+
+```ts
+import { distinctUntilChanged } from 'rxjs/operators';
+const source$ = of(1, 1, 2, 2, 3
+source$.pipe(
+  distinctUntilChanged()
+);
+source$.subscribe(value => console.log(value));
+// Logs: 1, 2, 3
+```
+
+Otro operador frecuente, que no es de transformación, es `tap`, que permite ejecutar efectos secundarios (side effects) sin modificar los valores emitidos.
+
+```ts
+import { tap } from 'rxjs/operators';
+const numbers$ = of(1, 2, 3).pipe(
+  tap((value) => console.log('Side effect:', value))
+);
+numbers$.subscribe((value) => console.log('Value:', value));
+// Logs: Side effect: 1
+//       Value: 1
+//       Side effect: 2
+//       Value: 2
+//       Side effect: 3
+//       Value: 3
+```
+
+Iremos viéndolos a lo largo de los ejemplos del módulo.
+
+#### Eventos más allá del click
+
+##### 🧿Componente MouseTracker con el evento "mousemove" del ratón
+
+Veamos un ejemplo sencillo de un componente que crea un observable a partir de los eventos `mouseMove` del ratón para detectar sus coordenadas mientras este se mueve por un área determinada. A diferencia del contador de clicks, en el estado estamos almacenando las coordenadas del ratón. Usaremos el operador `map` para transformar el evento del ratón en un objeto con las coordenadas x e y.
+
+```tsx
+type Coords = {
+  x: number;
+  y: number;
+};
+
+export const MouseTracker: React.FC = () => {
+  const areaRef = useRef<HTMLDivElement>(null);
+  const [coords, setCoords] = useState<Coords>({ x: 0, y: 0 });
+
+  useEffect(() => {
+    // Registramos la fuente de eventos del HTML (div)
+    const div = areaRef.current;
+    // Una guarda de tipos nos asegura que no es null
+    if (!div) return;
+
+    // Creamos el observable de eventos
+    const events$: Observable<Coords> = fromEvent<MouseEvent>(
+      div,
+      'mousemove'
+    ).pipe(
+      map((event) => ({
+        x: event.clientX,
+        y: event.clientY,
+      }))
+    );
+
+    // Nos suscribimos al observable de eventos
+    // Para actualizar el estado del componente
+    // Con los valores que emite el observable
+    const subscription = events$.subscribe({
+      next: (coords) => setCoords(coords),
+      // next: setCoords,
+    });
+
+    // Limpiamos la suscripción al desmontar el componente
+    return (): void => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <section>
+      <div className="event-div" ref={areaRef}>
+        Move de mouse (Events)
+      </div>
+      <output>
+        x: {coords.x} y: {coords.y}
+      </output>
+    </section>
+  );
+};
+```
+
+En este componente podemos ver la des-suscripción del observable en el return de `useEffect`, que se ejecuta cuando el componente se desmonta.
+
+Vemos otros enfoques en el tema de des-suscripción basados en el uso de multiples observables y de operadores de control de los observables.
+
+##### 👁️‍🗨️Test del componente MouseTracker
+
+En el primer test comprobamos que el componente renderiza correctamente y muestra las coordenadas iniciales (0,0).
+
+En el segundo test comprobamos que al simular un movimiento del ratón sobre el área de seguimiento, las coordenadas se actualizan correctamente. Para lo primero usamos el evento Pointer de userEvent con un par de coordenadas validas en el área delimitada en el componente.
+
+```tsx
+test('should display initial coordinates', () => {
+  render(<MouseTracker />);
+  const output = screen.getByText(/x: 0 y: 0/i);
+  expect(output).toBeInTheDocument();
+});
+
+test('should update coordinates on mouse move', async () => {
+  render(<MouseTracker />);
+  const output = screen.getByText(/x: 0 y: 0/i);
+  const trackingArea = screen.getByRole('region', { name: /tracking-area/i });
+  expect(output).toBeInTheDocument();
+
+  await userEvent.pointer({
+    target: trackingArea,
+    coords: { clientX: 300, clientY: 300 },
+  });
+
+  expect(screen.getByText(/x: 300 y: 300/i)).toBeInTheDocument();
+});
+```
+
+Aparte de la asincronía de userEvent, no es necesario usar waitFor ya que la actualización del estado del componente provoca un re-renderizado automático que se refleja en el output. El que estemos trabajando con observables a nivel de implementación no cambia el comportamiento del componente, ni la forma en que lo testamos.
+
+### Observable e intervalos
+
+Uno de los ejemplos más comunes de uso de observables es la creación de un observable que emite valores a intervalos regulares usando el operador `interval`.
+
+Los valores emitidos son una secuencia de ascendente de números enteros que comienzan en 0 y se incrementan en 1.
+
+```ts
+const interval$ = interval(1000);
+interval$.subscribe((val) => console.log(val));
+// Logs: 0, 1, 2, 3, 4, ...
+```
+
+Sin embargo, en muchos casos el valor es irrelevante, y lo que nos interesa es el momento en que se emite el valor, utilizándolo como un **tick** (pulso) para definir una frecuencia.
+
+![Interval marble diagram](./assets/interval.png)
+
+En la misma línea de uso del tiempo, existen otros operadores como `timer` que crea un observable que emite un único valor después de un retraso especificado.
+
+```ts
+const startingTime = Date.now();
+const tick$ = timer(5000);
+tick$.subscribe(() => console.log(Date.now() - startingTime));
+// Logs: 5002
+```
+
+`timer` también puede aceptar un segundo parámetro que define un intervalo de tiempo para emitir valores periódicamente.
+
+```ts
+const startingTime = Date.now();
+const tick$ = timer(2000, 1000);
+tick$.subscribe(() => console.log(Date.now() - startingTime));
+// Logs: 2003, 3004, 4005, 5006, ...
+```
+
+#### 🧿Componente IntervalCounter con observable de intervalos
+
+Nos planteamos un componente con botones para iniciar y detener un contador que se incrementa cada segundo.
+
+Usaremos el operador `interval` para crear el observable, pero sólo en el momento en que se pulse el botón de iniciar.
+
+A su vez las respuestas a los botones de iniciar y detener serán eventos que capturaremos con `fromEvent`.
+
+Tenemos por tanto tres flujos de datos:
+
+1. El observable de intervalos que emite un valor cada segundo
+2. El observable de eventos del botón iniciar (start$)
+3. El observable de eventos del botón detener (stop$)
+
+Por otro lado el valor del contador se almacenará en el estado del componente usando `useState`.
+
+Todos los flujos de datos se gestionan en el hook `useEffect`.
+
+En esta primera versión no utilizaremos los operadores, sino que gestionaremos la suscripción y des-suscripción manualmente.
+
+```tsx
+import React, { useEffect, useRef, useState } from 'react';
+import { fromEvent, interval, Subscription } from 'rxjs';
+
+export const IntervalCounter1: React.FC = () => {
+  const startRef = useRef<HTMLButtonElement | null>(null);
+  const stopRef = useRef<HTMLButtonElement | null>(null);
+
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    const btnStart = startRef.current;
+    const btnStop = stopRef.current;
+    if (!btnStart || !btnStop) return;
+
+    const start$ = fromEvent(btnStart, 'click');
+    const stop$ = fromEvent(btnStop, 'click');
+    const interval$ = interval(100);
+
+    let intervalSubscription: Subscription;
+    start$.subscribe(
+      () => (intervalSubscription = interval$.subscribe(onSubscribe))
+    );
+    stop$.subscribe(() => intervalSubscription.unsubscribe());
+
+    const onSubscribe = (): void => {
+      setCounter((prev) => prev + 1);
+    };
+  }, []);
+
+  return (
+    <div>
+      <h2>Interval Counter 1 (no operators)</h2>
+      <p>
+        Counter <output className="counter">{counter}</output>
+      </p>
+      <button ref={startRef}>Start</button>
+      <button ref={stopRef}>Stop</button>
+    </div>
+  );
+};
+```
+
+Al suscribirnos al observable de eventos del botón iniciar, creamos la suscripción al observable de intervalos y almacenamos la suscripción en una variable.
+
+Al suscribirnos al observable de eventos del botón detener, des-suscribimos la suscripción al observable de intervalos.
+
+En la suscripción al observable de intervalos, actualizamos el estado del componente para incrementar el contador. En lugar de una función anónima usamos una función nombrada `subscriber`.
+
+#### 👁️‍🗨️Test del componente IntervalCounter
+
+En este caso el funcionamiento del test depende del tiempo, ya que el contador se actualiza con un intervalo de 100ms. En casos así hay dos enfoques
+
+- el más realista, asumiendo el paso del tiempo real como parte del test
+- el más determinista, usando temporizadores simulados (fake timers) para controlar el paso del tiempo
+
+En el primero de los casos es test sería el siguiente
+
+```tsx
+test('should display initial count', () => {
+  render(<IntervalCounter1 />);
+  const output = screen.getByRole('status');
+  expect(output).toHaveTextContent(/^0$/);
+});
+
+test('should increment count', async () => {
+  render(<IntervalCounter1 />);
+  const button = screen.getByRole('button', { name: /start/i });
+  await userEvent.click(button);
+  const output = screen.getByRole('status');
+
+  await waitFor(
+    () => {
+      expect(output).toHaveTextContent(/^1$/);
+    },
+    { timeout: 120 }
+  );
+});
+```
+
+Después de pulsar el botón, esperamos 120 ms en el timeout del waitfor antes de comprobar que el contador se ha incrementado a 1.
+
+La alternativa determinista utiliza los temporizadores simulados de Vitest (vi,fakeTimers) para avanzar el reloj de forma controlada, activándolos en el beforeEach y desactivándolos en el afterEach.
+
+```tsx
+beforeEach(function () {
+  vi.useFakeTimers();
+});
+
+afterEach(function () {
+  vi.useRealTimers();
+});
+
+test('should increment count after start click', async function () {
+  render(<IntervalCounter1 />);
+  const button = screen.getByRole('button', { name: /start/i });
+
+  await act(async () => {
+    button.click();
+    // Avanzamos el reloj para que interval(100) emita al menos 1 vez
+    vi.advanceTimersByTime(120);
+  });
+  const output = screen.getByRole('status');
+  expect(output).not.toHaveTextContent(/^0$/);
+});
+```
+
+Al usar temporizadores simulados, el avance del reloj no es asíncrono, por lo que no es necesario usar waitFor. En caso de usar useEvent, habria que ajustarlo al so del timer, por lo que en este caso se emplea el método nativo `click` del elemento HTML.
+
+El click en el botón va seguido de un avance del reloj de 120 ms con `vi.advanceTimersByTime(120)`. Como ambos pasos desencadenan una actualización del estado y por tanto un nuevo renderizado, quedan envueltos en un `act`.
+
+## Gestión de observables y suscripciones
+
+La des-suscripción es un aspecto crucial en la gestión de observables en RxJS, especialmente para evitar fugas de memoria y comportamientos inesperados en aplicaciones que manejan múltiples flujos de datos asíncronos.
+
+La forma imperativa o "manual" de gestionar las suscripciones es guardar la suscripción en una variable y llamar a su método `unsubscribe` cuando ya no se necesite.
+
+En React este patrón se implementa comúnmente dentro del hook `useEffect`, donde
+
+```ts
+const subscription = observable$.subscribe((data) => console.log(data));
+// resto del código
+subscription.unsubscribe();
+```
+
+### En Angular
 
 En Angular, una práctica común es utilizar el hook `ngOnDestroy` para des-suscribirse de todos los observables cuando el componente se destruye. Esto se puede hacer manualmente o utilizando un patrón como `takeUntil` con un `Subject`.
 
@@ -1949,9 +2550,10 @@ export class MyComponent implements OnDestroy {
 }
 ```
 
-#### En React
+### En React
 
-En React, especialmente en componentes funcionales, se puede utilizar el hook `useEffect` para gestionar las suscripciones. El retorno de la función pasada a `useEffect` se ejecuta cuando el componente se desmonta, lo que es un buen lugar para des-suscribirse.
+En React, especialmente en componentes funcionales, se puede utilizar el hook `useEffect` para gestionar las suscripciones. El retorno de la función pasada a `useEffect` es la función de limpieza (cleanup function) que se ejecuta cuando el componente se desmonta y
+se utiliza para des-suscribirse de los observables.
 
 ```ts
 import { useEffect } from 'react';
@@ -1991,3 +2593,76 @@ const MyComponent = () => {
   return <div>My Component</div>;
 };
 ```
+
+### Operadores de control y desuscripción automática en componentes React
+
+Existen diversos operadores que podemos decir que controlan el funcionamiento de los observables, ya que permiten gestionar las emisiones, las suscripciones y las des-suscripciones.
+
+- **take**: Emite un número determinado de valores emitidos por un observable. A continuación el observable se completa automáticamente.
+- **takeUntil**: Emite los valores de un observable hasta que se emita un valor por otro observable. El primero se completa automáticamente.
+- **takeWhile**: Emite los valores de un observable mientras se cumpla una condición. Cuando la condición deja de cumplirse, el observable se completa automáticamente.
+
+![Take Marble Diagram](./assets/take.png)
+
+- **skip**: Ignora un número determinado de valores emitidos por un observable
+- **skipUntil**: Ignora los valores emitidos por un observable hasta que se emita un valor por otro observable
+- **skipWhile**: Ignora los valores emitidos por un observable mientras se cumpla una condición
+
+![Skip Marble Diagram](./assets/ski.png)
+
+Como vemos en el siguiente ejemplo. estos operadores, al completar los observables, permiten gestionar las **suscripciones** y **des-suscripciones** de forma automática, evitando tener que hacerlo manualmente.
+
+#### 🧿Componente IntervalCounter2 sin desuscripción manual
+
+A partir de un observable de intervalos y dos observables de eventos (iniciar y detener) vamos a crear un componente que implemente un contador que se incrementa cada segundo al pulsar el botón de iniciar y se detiene al pulsar el botón de detener.
+
+En este caso vamos a usar operadores para gestionar las suscripciones y des-suscripciones del observable de intervalos.
+
+- el operador `skipUntil` para ignorar las emisiones del observable de intervalos hasta que se pulse el botón de iniciar.
+- el operador `takeUntil` para completar el observable de intervalos cuando se pulse el botón de detener. Como nuestro observable de intervalos es infinito, este operador es necesario para que se complete y se des-suscriba automáticamente.
+  Además, usaremos el operador `scan` para acumular el valor del contador. Funciona como un reducer que recibe la función reductora y el valor inicial.
+
+```tsx
+import React, { useEffect, useRef, useState } from 'react';
+import { fromEvent, interval, scan, skipUntil, takeUntil } from 'rxjs';
+
+export const IntervalCounter2: React.FC = () => {
+  const startRef = useRef<HTMLButtonElement | null>(null);
+  const stopRef = useRef<HTMLButtonElement | null>(null);
+
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    const btnStart = startRef.current;
+    const btnStop = stopRef.current;
+    if (!btnStart || !btnStop) return;
+
+    const start$ = fromEvent(btnStart, 'click');
+    const stop$ = fromEvent(btnStop, 'click');
+    const interval$ = interval(100);
+
+    interval$
+      .pipe(
+        skipUntil(start$),
+        scan((a) => a + 1, 0),
+        takeUntil(stop$)
+      )
+      .subscribe((data) => setCounter(data));
+  }, []);
+
+  return (
+    <div>
+      <h2>Interval Counter v2 (con operadores)</h2>
+      <p>
+        Counter <output className="counter">{counter}</output>
+      </p>
+      <button ref={startRef}>Start</button>
+      <button ref={stopRef}>Stop</button>
+    </div>
+  );
+};
+```
+
+#### 👁️‍🗨️Test del componente IntervalCounter2
+
+Aunque la implementación es diferente, la interfaz y el comportamiento es igual que en el contador1, por lo que utilizamos exactamente el mismo test.
