@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RxJS Events</title>
+    <script src="https://unpkg.com/rxjs@%5E7/dist/bundles/rxjs.umd.min.js"></script>
+
+    <style>
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+        border: 1px solid #333;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <div>Move de mouse</div>
+      <output></output>
+    </section>
+    <script>
+      const { fromEvent, interval } = rxjs;
+      const { map } = rxjs.operators;
+
+      const div = document.querySelector("div");
+      const output = document.querySelector("output");
+
+      fromEvent(div, "mousemove")
+        .pipe(map((event) => event.clientX))
+        .subscribe({
+          next: (clientX) => (output.innerHTML = clientX),
+        });
+    </script>
+  </body>
+</html>
