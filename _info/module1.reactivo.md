@@ -76,13 +76,14 @@
       - [Observables externos o internos al componente](#observables-externos-o-internos-al-componente)
       - [👁️‍🗨️Test del componente ListNames](#️️test-del-componente-listnames)
     - [Observables a partir de eventos. Operador fromEvent y de transformación](#observables-a-partir-de-eventos-operador-fromevent-y-de-transformación)
-      - [🧿Componente ClickCounter con el evento click" del ratón](#componente-clickcounter-con-el-evento-click-del-ratón)
+      - [🧿Componente ClickCounter con el evento click del ratón](#componente-clickcounter-con-el-evento-click-del-ratón)
       - [👁️‍🗨️Test del componente ClickCounter](#️️test-del-componente-clickcounter)
+      - [🧿Componente ClickCounter refactorizado](#componente-clickcounter-refactorizado)
       - [Algunos operadores de transformación](#algunos-operadores-de-transformación)
       - [Eventos más allá del click](#eventos-más-allá-del-click)
         - [🧿Componente MouseTracker con el evento "mousemove" del ratón](#componente-mousetracker-con-el-evento-mousemove-del-ratón)
         - [👁️‍🗨️Test del componente MouseTracker](#️️test-del-componente-mousetracker)
-    - [Observable e intervalos](#observable-e-intervalos)
+    - [Observables e intervalos](#observables-e-intervalos)
       - [🧿Componente IntervalCounter con observable de intervalos](#componente-intervalcounter-con-observable-de-intervalos)
       - [👁️‍🗨️Test del componente IntervalCounter](#️️test-del-componente-intervalcounter)
   - [Gestión de observables y suscripciones](#gestión-de-observables-y-suscripciones)
@@ -2018,7 +2019,7 @@ export const ListNames: React.FC<Props> = ({ names$ = NAMES$ }) => {
 };
 ```
 
-El linter nos indica que names$ debe ser una dependencia del useEffect, ya que si cambia, debemos volver a suscribirnos al nuevo observable. En este caso esto no es un problema pero lo sería si creamos el observable dentro del componente, ya que en cada render se crearía un nuevo observable y se volvería a suscribir, creando una fuga de memoria.
+Al llegar por props, el linter nos indica que names$ debe ser una dependencia del useEffect, ya que si cambia, debemos volver a suscribirnos al nuevo observable. En este caso esto no es un problema pero lo sería si creamos el observable dentro del componente, ya que en cada render se crearía un nuevo observable y se volvería a suscribir, creando una fuga de memoria.
 
 ```tsx
 export const ListNamesIntra: React.FC = () => {
@@ -2109,7 +2110,7 @@ El valor emitido por el observable creado con `fromEvent` es el evento del DOM, 
 
 Veamos un ejemplo en un componente muy sencillo.
 
-#### 🧿Componente ClickCounter con el evento click" del ratón
+#### 🧿Componente ClickCounter con el evento click del ratón
 
 1. Definimos una referencia al elemento del DOM usando `useRef`
 2. Definimos el estado del componente usando `useState` y almacenando el número de clicks. Previamente tendremos un tipo para las coordenadas
@@ -2126,17 +2127,17 @@ export const CounterClicks: React.FC = () => {
   const startRef = useRef<HTMLButtonElement | null>(null);
   const [count, setCount] = React.useState(0);
 
-  const createObservable = (): Observable<number> | null => {
+  const createObservable = (): Observable<Event> | null => {
     const btn = startRef.current;
     if (!btn) return null;
-    const click$ = fromEvent<MouseEvent>(btn, 'click').pipe(map(() => 1));
-    return click$.pipe(scan((acc, curr) => acc + curr, 0));
+    const click$ = fromEvent<MouseEvent>(btn, 'click');
+    return click$;
   };
 
   useEffect(() => {
     const counter$ = createObservable();
     if (!counter$) return;
-    const subscription = counter$.subscribe(setCount);
+    const subscription = counter$.subscribe(() => setCount((c) => c + 1));
     return (): void => subscription.unsubscribe();
   }, []);
 
@@ -2175,6 +2176,42 @@ describe('CounterClicks', () => {
     expect(button).toHaveTextContent('Click count: 3');
   });
 });
+```
+
+#### 🧿Componente ClickCounter refactorizado
+
+Inicialmente createObservable devolvía Observable<Event\> y en el useEffect se hacía la suscripción al observable y se actualizaba el estado del contador de clicks calculándose el nuevo valor.
+
+Lo ideal, gracias a los operadores de transformación, es que el observable ya emita el valor transformado, es decir, el nuevo contador de clicks. De este modo, el useEffect se simplifica mucho, ya que solo se encarga de suscribirse al observable y actualizar el estado con el valor emitido.
+
+```tsx
+export const CounterClicks: React.FC = () => {
+  const startRef = useRef<HTMLButtonElement | null>(null);
+  const [count, setCount] = React.useState(0);
+
+  const createObservable = (): Observable<number> | null => {
+    const btn = startRef.current;
+    if (!btn) return null;
+    const click$ = fromEvent<MouseEvent>(btn, 'click')
+      .pipe(map(() => 1))
+      .pipe(scan((acc, curr) => acc + curr, 0));
+    return click$;
+  };
+
+  useEffect(() => {
+    console.log('Use effect: CounterClicks');
+    const counter$ = createObservable();
+    if (!counter$) return;
+    const subscription = counter$.subscribe(setCount);
+    return (): void => subscription.unsubscribe();
+  }, []);
+
+  return (
+    <Card title="Counter Clicks">
+      <button ref={startRef}>Click count: {count}</button>
+    </Card>
+  );
+};
 ```
 
 #### Algunos operadores de transformación
@@ -2271,44 +2308,38 @@ export const MouseTracker: React.FC = () => {
   const areaRef = useRef<HTMLDivElement>(null);
   const [coords, setCoords] = useState<Coords>({ x: 0, y: 0 });
 
-  useEffect(() => {
-    // Registramos la fuente de eventos del HTML (div)
+  const factory = (): Observable<Coords> | null => {
     const div = areaRef.current;
-    // Una guarda de tipos nos asegura que no es null
-    if (!div) return;
+    if (!div) return null;
 
-    // Creamos el observable de eventos
-    const events$: Observable<Coords> = fromEvent<MouseEvent>(
-      div,
-      'mousemove'
-    ).pipe(
-      map((event) => ({
-        x: event.clientX,
-        y: event.clientY,
-      }))
+    const events$: Observable<Coords> = fromEvent<MouseEvent>(div).pipe(
+      map((event) => ({ x: event.clientX, y: event.clientY }))
     );
+    return events$;
+  };
 
-    // Nos suscribimos al observable de eventos
-    // Para actualizar el estado del componente
-    // Con los valores que emite el observable
-    const subscription = events$.subscribe({
-      next: (coords) => setCoords(coords),
-      // next: setCoords,
-    });
-
-    // Limpiamos la suscripción al desmontar el componente
+  useEffect(() => {
+    console.log('Use effect: MouseTracker');
+    const events$ = factory();
+    if (!events$) return;
+    const subscription = events$.subscribe(setCoords);
     return (): void => subscription.unsubscribe();
   }, []);
 
   return (
-    <section>
-      <div className="event-div" ref={areaRef}>
+    <Card title="Mouse Tracker (with RxJS)">
+      <div
+        className="event-div"
+        role="region"
+        aria-label="tracking-area"
+        ref={areaRef}
+      >
         Move de mouse (Events)
       </div>
       <output>
         x: {coords.x} y: {coords.y}
       </output>
-    </section>
+    </Card>
   );
 };
 ```
@@ -2347,7 +2378,7 @@ test('should update coordinates on mouse move', async () => {
 
 Aparte de la asincronía de userEvent, no es necesario usar waitFor ya que la actualización del estado del componente provoca un re-renderizado automático que se refleja en el output. El que estemos trabajando con observables a nivel de implementación no cambia el comportamiento del componente, ni la forma en que lo testamos.
 
-### Observable e intervalos
+### Observables e intervalos
 
 Uno de los ejemplos más comunes de uso de observables es la creación de un observable que emite valores a intervalos regulares usando el operador `interval`.
 
@@ -2405,41 +2436,57 @@ En esta primera versión no utilizaremos los operadores, sino que gestionaremos 
 import React, { useEffect, useRef, useState } from 'react';
 import { fromEvent, interval, Subscription } from 'rxjs';
 
-export const IntervalCounter1: React.FC = () => {
+export const IntervalCounter: React.FC = () => {
   const startRef = useRef<HTMLButtonElement | null>(null);
   const stopRef = useRef<HTMLButtonElement | null>(null);
 
   const [counter, setCounter] = useState(0);
+  const interval$ = interval(500);
 
-  useEffect(() => {
+  const factory = (): [Observable<Event>, Observable<Event>] | null => {
     const btnStart = startRef.current;
     const btnStop = stopRef.current;
-    if (!btnStart || !btnStop) return;
-
+    if (!btnStart || !btnStop) return null;
     const start$ = fromEvent(btnStart, 'click');
     const stop$ = fromEvent(btnStop, 'click');
-    const interval$ = interval(100);
+    return [start$, stop$];
+  };
 
-    let intervalSubscription: Subscription;
-    start$.subscribe(
-      () => (intervalSubscription = interval$.subscribe(onSubscribe))
-    );
-    stop$.subscribe(() => intervalSubscription.unsubscribe());
+  useEffect(() => {
+    console.log('Use Effect');
+    const [start$, stop$] = factory() ?? [null, null];
+    if (!start$ || !stop$) return;
 
-    const onSubscribe = (): void => {
-      setCounter((prev) => prev + 1);
+    let subscriptionInterval: Subscription;
+
+    const subscription1 = start$.subscribe(() => {
+      console.log('Start button clicked');
+
+      subscriptionInterval = interval$.subscribe(() => {
+        setCounter((c) => c + 1);
+      });
+    });
+
+    const subscription2 = stop$.subscribe(() => {
+      console.log('Stop button clicked');
+      subscriptionInterval?.unsubscribe();
+    });
+
+    return (): void => {
+      subscription1.unsubscribe();
+      subscription2.unsubscribe();
     };
-  }, []);
+  }, [interval$]);
 
   return (
-    <div>
-      <h2>Interval Counter 1 (no operators)</h2>
+    <Card title="Interval Counter 1">
+      <p>Interval Counter 1 (no operators)</p>
       <p>
         Counter <output className="counter">{counter}</output>
       </p>
       <button ref={startRef}>Start</button>
       <button ref={stopRef}>Stop</button>
-    </div>
+    </Card>
   );
 };
 ```
@@ -2552,7 +2599,7 @@ export class MyComponent implements OnDestroy {
 
 ### En React
 
-En React, especialmente en componentes funcionales, se puede utilizar el hook `useEffect` para gestionar las suscripciones. El retorno de la función pasada a `useEffect` es la función de limpieza (cleanup function) que se ejecuta cuando el componente se desmonta y
+En React, como venimos haciendo, se puede utilizar el hook `useEffect` para gestionar las suscripciones. El retorno de la función pasada a `useEffect` es la función de limpieza (cleanup function) que se ejecuta cuando el componente se desmonta y
 se utiliza para des-suscribirse de los observables.
 
 ```ts
@@ -2571,7 +2618,7 @@ const MyComponent = () => {
 };
 ```
 
-En este caso también podría utilizarse el operador `takeUntil` con un `Subject`, pero es menos común en React.
+Como en Angular, en este caso también podría utilizarse el operador `takeUntil` con un `Subject`, pero es menos común en React.
 
 ```ts
 import { useEffect } from 'react';
@@ -2662,6 +2709,10 @@ export const IntervalCounter2: React.FC = () => {
   );
 };
 ```
+
+En este caso, no es necesario gestionar las suscripciones y des-suscripciones manualmente, ya que los operadores `skipUntil` y `takeUntil` se encargan de ello automáticamente. Sin embargo, la consecuencia es que una vez pulsado el botón de detener, el observable de intervalos se completa y no se puede reiniciar el contador sin volver a montar el componente.
+
+Es un ejemplo de uso de operadores de control, más que un patrón recomendable para este caso concreto.
 
 #### 👁️‍🗨️Test del componente IntervalCounter2
 

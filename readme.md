@@ -9,6 +9,7 @@
       - [Día 3 - Miércoles 05/11/2026](#día-3---miércoles-05112026)
       - [Día 4 - Jueves 06/11/2026](#día-4---jueves-06112026)
     - [Semana 2](#semana-2)
+      - [Día 5 - Lunes 10/11/2026](#día-5---lunes-10112026)
     - [Semana 3](#semana-3)
 
 DURACIÓN: 45 horas
@@ -137,21 +138,63 @@ Avanzado
 
 ### Semana 2
 
-Previsión semanal:
+#### Día 5 - Lunes 10/11/2026
 
-Observable cold. Suscripciones. ¿Observables hot?
-Operadores (Lista). Creación de observables
-Typescript avanzado (Mod. 2)
-Typecript y asincronía. Manejo de errores (Mod. 2)
+- Proyecto TS-Rx
+- Observable cold. Suscripciones
+  - observers: next, error, complete
+  - Unicast
+  - Lazy
+  - Subscription. Cancelación
+- Observables hot. Subjects.
 
-Hooks Perdsonalizados y RxJS (Mod. 3)
-Observables RxJS en componentes de react (Mod. 3)
+  - Multicast
+  - Subject
+  - BehaviorSubject
+  - ReplaySubject
+  - AsyncSubject
+
+- Creación de observables: Operadores de creación
+  - of, from
+  - fromEvent
+  - interval, timer
+
+[descanso] 16:30 - 16:50
+
+- Operadores (Comentar Lista).
+- Observables RxJS en componentes de react
+
+  - Proyecto React + TS + RxJS + Vite
+  - Observables y estado: ListNames
+    - useState: creación del estado
+    - useEffect y suscripciones: actualización del estado
+    - uso de useMemo
+  - Observables y eventos: ClickCounter
+    - fromEvent: creación del observable
+    - useEffect y suscripciones: actualización del estado
+    - operadores de RxJS: map, scan..
+  - Observables e intervalos: IntervalCounter
+    - interval: creación del observable
+    - useEffect y suscripciones: actualización del estado
 
 <!--
-#### Día 5 - Lunes 10/11/2026
+
+Quedo pendiente operadores de RxJS: map, scan en ClickCounter
+
 #### Día 6 - Martes 11/11/2026
+
+- Desuscripción
+  - función de limpieza en useEffect
+  - desuscripción automática: IntervalCounter2 con takeUntil
+
+- Typescript avanzado (Mod. 2)
+- Typecript y asincronía. Manejo de errores (Mod. 2)
+
 #### Día 7 - Miércoles 12/11/2026
+Hooks Perdsonalizados y RxJS (Mod. 3)
+
 #### Día 8 - Jueves 13/11/2026
+Observables RxJS en componentes de react (Mod. 3)
 -->
 
 ### Semana 3
