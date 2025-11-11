@@ -1,0 +1,2 @@
+// Anotación de tipos genéricos
+// =============================
