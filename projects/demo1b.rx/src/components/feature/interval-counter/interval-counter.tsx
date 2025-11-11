@@ -2,7 +2,7 @@ import { Card } from '@/components/core/card/card';
 import React, { useEffect, useRef, useState } from 'react';
 import { fromEvent, interval, Observable, Subscription } from 'rxjs';
 
-export const IntervalCounter: React.FC = () => {
+export const IntervalCounter1: React.FC = () => {
     const startRef = useRef<HTMLButtonElement | null>(null);
     const stopRef = useRef<HTMLButtonElement | null>(null);
 
