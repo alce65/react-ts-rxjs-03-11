@@ -10,6 +10,7 @@
       - [Día 4 - Jueves 06/11/2026](#día-4---jueves-06112026)
     - [Semana 2](#semana-2)
       - [Día 5 - Lunes 10/11/2026](#día-5---lunes-10112026)
+      - [Día 6 - Martes 11/11/2026](#día-6---martes-11112026)
     - [Semana 3](#semana-3)
 
 DURACIÓN: 45 horas
@@ -177,24 +178,41 @@ Avanzado
     - interval: creación del observable
     - useEffect y suscripciones: actualización del estado
 
-<!--
-
-Quedo pendiente operadores de RxJS: map, scan en ClickCounter
-
 #### Día 6 - Martes 11/11/2026
 
 - Desuscripción
-  - función de limpieza en useEffect
-  - desuscripción automática: IntervalCounter2 con takeUntil
 
-- Typescript avanzado (Mod. 2)
-- Typecript y asincronía. Manejo de errores (Mod. 2)
+  - función de limpieza en useEffect
+  - desuscripción automática
+    - Componente IntervalCounter2 con takeUntil
+
+- Typescript avanzado. Tipos en React (comentarios)
+- Genéricos. Restricciones con Extend
+- Manipulación de tipos
+  - keyof & typeof
+  - Indexed Access Types
+
+[descanso] 16:20 - 16:45
+
+- Genéricos en React. Componente List genérico
+- Mapped Types
+- Conditional Types
+- Utility Types
+
+<!--
 
 #### Día 7 - Miércoles 12/11/2026
-Hooks Perdsonalizados y RxJS (Mod. 3)
+
+- Terminar Utility Types
+- Comentar componente User  uniones v. condicionales
+- TypeScript y asincronía. Manejo de errores (Mod. 2)
+
+- Hooks Personalizados y RxJS (Mod. 3)
 
 #### Día 8 - Jueves 13/11/2026
-Observables RxJS en componentes de react (Mod. 3)
+
+- Hooks Personalizados y RxJS (Mod. 3) - Terminar
+- Observables RxJS en componentes de react (Mod. 3)
 -->
 
 ### Semana 3
