@@ -11,6 +11,7 @@
     - [Semana 2](#semana-2)
       - [Día 5 - Lunes 10/11/2026](#día-5---lunes-10112026)
       - [Día 6 - Martes 11/11/2026](#día-6---martes-11112026)
+      - [Día 7 - Miércoles 12/11/2026 (hasta las 17:15)](#día-7---miércoles-12112026-hasta-las-1715)
     - [Semana 3](#semana-3)
 
 DURACIÓN: 45 horas
@@ -199,26 +200,50 @@ Avanzado
 - Conditional Types
 - Utility Types
 
-<!--
-
-#### Día 7 - Miércoles 12/11/2026
+#### Día 7 - Miércoles 12/11/2026 (hasta las 17:15)
 
 - Terminar Utility Types
-- Comentar componente User  uniones v. condicionales
+- Comentar componente User uniones v. condicionales
 - TypeScript y asincronía. Manejo de errores (Mod. 2)
 
-- Hooks Personalizados y RxJS (Mod. 3)
+- Hooks Personalizados y RxJS
+  - Introducción. Tipado de hooks personalizados
+    - useTogle
+    - useLocalStorage, usando genéricos
+- Creación de hooks personalizados con RxJS
+  - Componente Lista (datos, asincronía)->
+    - useObservable.v1
+    - useObservable.v2 + useSubscription
+    - Test de los componentes -> test de los hooks
+  - Componente CounterClicks (Eventos ) ->
+    - useObservable.v3 + useSubscription
+    - Test de los componentes -> test de los hooks
+  - ¿Componentte IntervalCounter?
 
+<!--
 #### Día 8 - Jueves 13/11/2026
 
-- Hooks Personalizados y RxJS (Mod. 3) - Terminar
-- Observables RxJS en componentes de react (Mod. 3)
+- Hooks Personalizados y RxJS (continuación)
+  - Componente y multiples estados: UserLogged -> useUserLogged
+- Integración y operaciones con Observables en componentes React
+  - Debounces y Throttles
+    - 🧿Componente Fibonacci: take, takeWhile, debounceTime, merge
+    - 👁️‍🗨️Test del componente Fibonacci
+  - Combinación de observables
+  - Constantes Observables
+  - Observables de Orden Superior (Higher-Order Observables)
+    - 🧿Componente GetData: MergeMap v. SwitchMap
+      - 👁️‍🗨️Test del componente GetData
+    - 🧿Componente IntervalCounter3 (2 botones con switchMap)
+      - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
+    - 🧿Componente IntervalCounter4 (3 botones con switchMap)
+      - 👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)
 -->
 
 ### Semana 3
 
 Previsión semanal:
-
+¿Subjects en Componentes de React?
 Observables RxJS en componentes de react (Mod. 3)
 Http Client (Mod. 4)
 Gestión del estado. Subjects (Mod. 5)
