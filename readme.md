@@ -12,6 +12,7 @@
       - [Día 5 - Lunes 10/11/2026](#día-5---lunes-10112026)
       - [Día 6 - Martes 11/11/2026](#día-6---martes-11112026)
       - [Día 7 - Miércoles 12/11/2026 (hasta las 17:15)](#día-7---miércoles-12112026-hasta-las-1715)
+      - [Día 8 - Jueves 13/11/2026](#día-8---jueves-13112026)
     - [Semana 3](#semana-3)
 
 DURACIÓN: 45 horas
@@ -204,53 +205,67 @@ Avanzado
 
 - Terminar Utility Types
 - Comentar componente User uniones v. condicionales
-- TypeScript y asincronía. Manejo de errores (Mod. 2)
+- TypeScript y asincronía. Manejo de errores
+
+  - Promesas con TS
+  - Observables con TS
 
 - Hooks Personalizados y RxJS
   - Introducción. Tipado de hooks personalizados
-    - useTogle
+    - useToggle
     - useLocalStorage, usando genéricos
+    - Test de los hooks
 - Creación de hooks personalizados con RxJS
   - Componente Lista (datos, asincronía)->
     - useObservable.v1
     - useObservable.v2 + useSubscription
     - Test de los componentes -> test de los hooks
-  - Componente CounterClicks (Eventos ) ->
+  - Componente ClicksCounter (Eventos) ->
     - useObservable.v3 + useSubscription
     - Test de los componentes -> test de los hooks
-  - ¿Componentte IntervalCounter?
 
-<!--
 #### Día 8 - Jueves 13/11/2026
 
 - Hooks Personalizados y RxJS (continuación)
   - Componente y multiples estados: UserLogged -> useUserLogged
+  - Single Component Hook
 - Integración y operaciones con Observables en componentes React
   - Debounces y Throttles
-    - 🧿Componente Fibonacci: take, takeWhile, debounceTime, merge
-    - 👁️‍🗨️Test del componente Fibonacci
+    - 🧿Componente Fibonacci-items: take, takeWhile, debounceTime
+
+[descanso] 16:20 - 16:40
+
+- Integración y operaciones con Observables en componentes React (continuación)
+
+  - 🧿Componente Fibonacci (continuación)
+    - Radio buttons en el componente padre
+    - useMemo y useCallback en el componente
+
   - Combinación de observables
   - Constantes Observables
   - Observables de Orden Superior (Higher-Order Observables)
+
+### Semana 3
+
+<!--
+#### Día 9 - Lunes 17/11/2026
+
+  - Observables de Orden Superior (Higher-Order Observables)
+    - 🧿Componente Fibonacci v.2
+      - 👁️‍🗨️Test del componente Fibonacci (sin comentarlo)
     - 🧿Componente GetData: MergeMap v. SwitchMap
       - 👁️‍🗨️Test del componente GetData
     - 🧿Componente IntervalCounter3 (2 botones con switchMap)
       - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
     - 🧿Componente IntervalCounter4 (3 botones con switchMap)
       - 👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)
--->
 
-### Semana 3
-
-Previsión semanal:
-¿Subjects en Componentes de React?
-Observables RxJS en componentes de react (Mod. 3)
-Http Client (Mod. 4)
-Gestión del estado. Subjects (Mod. 5)
-
-<!--
-#### Día 9 - Lunes 17/11/2026
 #### Día 10 - Martes 18/11/2026
+¿Subjects en Componentes de React?
+
 #### Día 11 - Miércoles 19/11/2026
+Http Client (Mod. 4)
+
 #### Día 12 - Jueves 20/11/2026
+Gestión del estado. Subjects (Mod. 5)
 -->
