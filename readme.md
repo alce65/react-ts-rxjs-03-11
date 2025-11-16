@@ -11,9 +11,10 @@
     - [Semana 2](#semana-2)
       - [Día 5 - Lunes 10/11/2026](#día-5---lunes-10112026)
       - [Día 6 - Martes 11/11/2026](#día-6---martes-11112026)
-      - [Día 7 - Miércoles 12/11/2026 (hasta las 17:15)](#día-7---miércoles-12112026-hasta-las-1715)
+      - [Día 7 - Miércoles 12/11/2026 - hasta las 17.15](#día-7---miércoles-12112026---hasta-las-1715)
       - [Día 8 - Jueves 13/11/2026](#día-8---jueves-13112026)
     - [Semana 3](#semana-3)
+
 
 DURACIÓN: 45 horas
 
@@ -201,7 +202,7 @@ Avanzado
 - Conditional Types
 - Utility Types
 
-#### Día 7 - Miércoles 12/11/2026 (hasta las 17:15)
+#### Día 7 - Miércoles 12/11/2026 - hasta las 17.15
 
 - Terminar Utility Types
 - Comentar componente User uniones v. condicionales
@@ -238,6 +239,7 @@ Avanzado
 - Integración y operaciones con Observables en componentes React (continuación)
 
   - 🧿Componente Fibonacci (continuación)
+
     - Radio buttons en el componente padre
     - useMemo y useCallback en el componente
 
@@ -250,21 +252,29 @@ Avanzado
 <!--
 #### Día 9 - Lunes 17/11/2026
 
-  - Observables de Orden Superior (Higher-Order Observables)
-    - 🧿Componente Fibonacci v.2
-      - 👁️‍🗨️Test del componente Fibonacci (sin comentarlo)
-    - 🧿Componente GetData: MergeMap v. SwitchMap
-      - 👁️‍🗨️Test del componente GetData
-    - 🧿Componente IntervalCounter3 (2 botones con switchMap)
-      - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
-    - 🧿Componente IntervalCounter4 (3 botones con switchMap)
-      - 👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)
+- Observables de Orden Superior (Higher-Order Observables)
+  - 🧿Componente Fibonacci v.2
+    - 👁️‍🗨️Test del componente Fibonacci (sin comentarlo)
+  - 🧿Componente GetData: MergeMap v. SwitchMap
+    - 👁️‍🗨️Test del componente GetData
+  - 🧿Componente IntervalCounter3 (2 botones con switchMap)
+    - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
+  - 🧿Componente IntervalCounter4 (3 botones con switchMap)
+    - 👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)
 
 #### Día 10 - Martes 18/11/2026
-¿Subjects en Componentes de React?
+- Http Client (Mod. 4)
+  - ⚙️Servicio genérico fetchService
+    - operadores fromFetch y switchMap, tipado, errores
+  - ⚙️Servicio específico fetchTodoService
+  - 🧿Componente FetchButton
+- Manejo de API desde un input de búsqueda
+  - 🧿 Componente ReadInput
+  - ⚙️Servicio SearchCountries
+  - 🧿Componente SearchCountries
 
 #### Día 11 - Miércoles 19/11/2026
-Http Client (Mod. 4)
+¿Subjects en Componentes de React?
 
 #### Día 12 - Jueves 20/11/2026
 Gestión del estado. Subjects (Mod. 5)
