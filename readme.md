@@ -14,7 +14,7 @@
       - [Día 7 - Miércoles 12/11/2026 - hasta las 17.15](#día-7---miércoles-12112026---hasta-las-1715)
       - [Día 8 - Jueves 13/11/2026](#día-8---jueves-13112026)
     - [Semana 3](#semana-3)
-
+      - [Día 9 - Lunes 17/11/2026](#día-9---lunes-17112026)
 
 DURACIÓN: 45 horas
 
@@ -220,7 +220,7 @@ Avanzado
   - Componente Lista (datos, asincronía)->
     - useObservable.v1
     - useObservable.v2 + useSubscription
-    - Test de los componentes -> test de los hooks
+    - Test de los componentes -> test de los hookscd
   - Componente ClicksCounter (Eventos) ->
     - useObservable.v3 + useSubscription
     - Test de los componentes -> test de los hooks
@@ -249,7 +249,6 @@ Avanzado
 
 ### Semana 3
 
-<!--
 #### Día 9 - Lunes 17/11/2026
 
 - Observables de Orden Superior (Higher-Order Observables)
@@ -258,6 +257,11 @@ Avanzado
   - 🧿Componente GetData: MergeMap v. SwitchMap
     - 👁️‍🗨️Test del componente GetData
   - 🧿Componente IntervalCounter3 (2 botones con switchMap)
+
+[descanso] 16:40 - 17:00
+
+<!--
+- Observables de Orden Superior (Higher-Order Observables) (continuación)
     - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
   - 🧿Componente IntervalCounter4 (3 botones con switchMap)
     - 👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)
