@@ -1,3 +1,4 @@
+import { GetData } from '@/components/get-data/get-data';
 import { Layout } from '../layout/layout';
 
 
@@ -7,7 +8,7 @@ export const App: React.FC = () => {
     return (
         <Layout appTitle={title}>
             <main>
-                <p>Demo 4 - Vite + React + TypeScript y API REST</p>
+                <GetData />
             </main>
         </Layout>
     );
