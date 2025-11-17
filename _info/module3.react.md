@@ -4,41 +4,51 @@
   - [Propuesta inicial del módulo](#propuesta-inicial-del-módulo)
   - [Hooks personalizados en React con TypeScript](#hooks-personalizados-en-react-con-typescript)
     - [Hooks personalizados (custom hooks) tipados](#hooks-personalizados-custom-hooks-tipados)
-      - [🧿Hook básico useToggle](#hook-básico-usetoggle)
-      - [🧿Hook genérico useLocalStorage\<T\>()](#hook-genérico-uselocalstoraget)
+      - [⚙️Hook básico useToggle](#️hook-básico-usetoggle)
+      - [⚙️Hook genérico useLocalStorage\<T\>()](#️hook-genérico-uselocalstoraget)
       - [Tests de hooks personalizados](#tests-de-hooks-personalizados)
       - [👁️‍🗨️Test del hook básico useToggle](#️️test-del-hook-básico-usetoggle)
       - [👁️‍🗨️Test del hook genérico useLocalStorage\<T\>()](#️️test-del-hook-genérico-uselocalstoraget)
-      - [Hooks personalizados y efectos](#hooks-personalizados-y-efectos)
+      - [Hooks personalizados y side effects](#hooks-personalizados-y-side-effects)
+        - [Hooks sin useEffect](#hooks-sin-useeffect)
+        - [Hooks con useEffect](#hooks-con-useeffect)
+        - [⚙️Hook useLoadUser](#️hook-useloaduser)
     - [Hooks personalizados con RxJS y gestión de side effects (useEffect)](#hooks-personalizados-con-rxjs-y-gestión-de-side-effects-useeffect)
       - [Hooks para observables y suscripciones](#hooks-para-observables-y-suscripciones)
-        - [🧿Hook useObservable: primera versión](#hook-useobservable-primera-versión)
+        - [⚙️Hook useObservable: primera versión](#️hook-useobservable-primera-versión)
         - [Asincronía y useObservable](#asincronía-y-useobservable)
         - [🧿Componente ListNames (1) con useObservable](#componente-listnames-1-con-useobservable)
       - [Hooks y single responsibility](#hooks-y-single-responsibility)
-        - [🧿Hooks useSubscription](#hooks-usesubscription)
-        - [🧿Hooks useObservable (segunda versión)](#hooks-useobservable-segunda-versión)
+        - [⚙️Hooks useSubscription](#️hooks-usesubscription)
+        - [⚙️Hooks useObservable (segunda versión)](#️hooks-useobservable-segunda-versión)
         - [🧿Componente ListNames (2) con useObservable (v.2)](#componente-listnames-2-con-useobservable-v2)
         - [Single Component Hooks](#single-component-hooks)
       - [Hooks y observables de eventos](#hooks-y-observables-de-eventos)
-        - [🧿Hook useObservableEvent: suscripción a un observable de eventos](#hook-useobservableevent-suscripción-a-un-observable-de-eventos)
+        - [⚙️Hook useObservableEvent: suscripción a un observable de eventos](#️hook-useobservableevent-suscripción-a-un-observable-de-eventos)
         - [🧿Componente CounterWithHook: Uso de useMemo y useCallback para optimización](#componente-counterwithhook-uso-de-usememo-y-usecallback-para-optimización)
-        - [🧿Hooks useSubscription y useObservable refactorizados](#hooks-usesubscription-y-useobservable-refactorizados)
-      - [Datos y cambio de Estado en useEffect: uso de un hook personalizado con RxJS](#datos-y-cambio-de-estado-en-useeffect-uso-de-un-hook-personalizado-con-rxjs)
-        - [🧿Componente User: estado y asincronía](#componente-user-estado-y-asincronía)
-        - [🧿Estados, hooks y asincronía (RxJS): hook UseUser](#estados-hooks-y-asincronía-rxjs-hook-useuser)
+        - [⚙️Hooks useSubscription y useObservable refactorizados](#️hooks-usesubscription-y-useobservable-refactorizados)
+      - [Datos y multiples estado en useEffect: Single Component Hooks](#datos-y-multiples-estado-en-useeffect-single-component-hooks)
+        - [🧿Componente UserLogged: estados y asincronía](#componente-userlogged-estados-y-asincronía)
+        - [⚙️Estados, hooks y asincronía (RxJS): hook useUserLogged](#️estados-hooks-y-asincronía-rxjs-hook-useuserlogged)
+      - [🧿Componente UserLogged](#componente-userlogged)
+        - [⚙️Hook más genérico: useObservableLoad](#️hook-más-genérico-useobservableload)
+        - [🧿Componente agrupando los estados UserLogged3](#componente-agrupando-los-estados-userlogged3)
   - [Integración y operaciones con Observables en componentes React](#integración-y-operaciones-con-observables-en-componentes-react)
     - [Debounces y Throttles](#debounces-y-throttles)
       - [🧿Componente Fibonacci: take, takeWhile, debounceTime, merge](#componente-fibonacci-take-takewhile-debouncetime-merge)
       - [👁️‍🗨️Test del componente Fibonacci](#️️test-del-componente-fibonacci)
+      - [Refactorizando Fibonacci en varios Componentes](#refactorizando-fibonacci-en-varios-componentes)
+      - [🧿Componentes Fibonacci.v2](#componentes-fibonacciv2)
+      - [🧿Componentes FiboItems](#componentes-fiboitems)
     - [Combinación de observables](#combinación-de-observables)
     - [Constantes Observables](#constantes-observables)
     - [Observables de Orden Superior (Higher-Order Observables)](#observables-de-orden-superior-higher-order-observables)
+      - [🧿Evolución del componente Fibonacci: SwitchMap](#evolución-del-componente-fibonacci-switchmap)
       - [🧿Componente GetData: MergeMap v. SwitchMap](#componente-getdata-mergemap-v-switchmap)
       - [👁️‍🗨️Test del componente GetData](#️️test-del-componente-getdata)
       - [🧿Componente IntervalCounter3 (2 botones con switchMap)](#componente-intervalcounter3-2-botones-con-switchmap)
       - [👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)](#️️test-del-componente-intervalcounter3-2-botones-con-switchmap)
-      - [🧿Componente IntervalCounter4 (3 botones con switchMap)](#componente-intervalcounter4-3-botones-con-switchmap)
+      - [🧿Componente IntervalCounter4 (3 botones con switchMap y merge)](#componente-intervalcounter4-3-botones-con-switchmap-y-merge)
       - [👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)](#️️test-del-componente-intervalcounter4-3-botones-con-switchmap)
   - [Rxjs en React: Subjects en Componentes React](#rxjs-en-react-subjects-en-componentes-react)
 
@@ -68,7 +78,7 @@ Los hooks personalizados (useX) permiten extraer y reutilizar lógica con estado
 Pueden recibir argumentos y retornar datos o funciones, todos con tipos explícitos.
 Puedes usar genéricos (\<T>) para hacerlos más reutilizables.
 
-#### 🧿Hook básico useToggle
+#### ⚙️Hook básico useToggle
 
 En el siguiente ejemplo se muestra un hook que alterna entre dos estados, devolviendo un array con el estado actual y una función para alternar entre ellos. Este tipo de retorno como un array con el estado y la función, sigue el patrón de los hooks de React, como useState o useReducer.
 
@@ -96,7 +106,7 @@ export const TestComponent = () => {
 
 Sin el tipado explícito del valor devuelto, el tipo de `state` y de `toggle` sería una unión de tipos `boolean | () => void`, sin que typescript pudiera discriminar el tipo exacto de ambos.
 
-#### 🧿Hook genérico useLocalStorage\<T>()
+#### ⚙️Hook genérico useLocalStorage\<T>()
 
 En el segundo ejemplo que veremos, algo más complejo, se muestra un hook que guarda un valor en localStorage. En su tipado es necesario utilizar un genérico para que el valor pueda ser de cualquier tipo, y no solo de un tipo específico. El hook devuelve el valor almacenado y una función para actualizarlo.
 
@@ -275,15 +285,70 @@ En los test, se utilizan mocks para simular el comportamiento de `localStorage`,
 });
 ```
 
-#### Hooks personalizados y efectos
+#### Hooks personalizados y side effects
 
-Los hooks personalizados pueden incluir efectos secundarios, como el uso de `useEffect` para realizar acciones cuando cambian los valores del estado, pero generalmente, se considera una mala práctica incluir efectos dentro de un hook personalizado, ya que puede hacer que el código sea más difícil de entender y mantener. En su lugar, es mejor dejar que el componente que utiliza el hook maneje los efectos secundarios.
+Los hooks personalizados pueden incluir efectos secundarios, como el uso de `useEffect` para realizar acciones cuando cambian los valores del estado.
+
+##### Hooks sin useEffect
+
+En algunos casos, se opta por no incluir efectos dentro de un hook personalizado, ya que puede hacer que el código sea más difícil de entender y mantener. En su lugar, es mejor dejar que el componente que utiliza el hook maneje los efectos secundarios.
 
 Cuando el componentes que utiliza el hook necesita realizar un efecto secundario, utilizará una función del hook dentro de `useEffect`. Estaremos por tanto en la misma situación que si se usa una función recibida por props, y como ya hemos visto, el linter nos avisará de que la función no está incluida en el array de dependencias. En este caso, es recomendable usar `useCallback` para evitar que la función cambie su referencia y provoque un bucle infinito.
 
-Lo veremos en el contexto de la asincronía, que corresponde a la siguiente sección.
+##### Hooks con useEffect
 
-TODO: añadir ejemplo simple de hook con useEffect y useCallback: useLoadUser
+En el contexto de la asincronía, y sobre todo con los flujos de datos reactivos (observables) lo habitual es llevarnos los efectos al custom hook, que se encargara de la conexión (binding) entre el estado y el flujo.
+
+##### ⚙️Hook useLoadUser
+
+Con un componente que carga datos de un usuario desde una API, podemos crear un hook personalizado que maneje la carga de datos y el estado del usuario.
+
+```tsx
+export const useLoadUser = (): User | null => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const loadUser = async (): Promise<void> => {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users/1'
+      );
+      const data = await response.json();
+      setUser(data);
+    };
+
+    console.log('Sample11b: useEffect');
+    loadUser();
+  }, []);
+
+  return user;
+};
+```
+
+Como el estado y los efectos están en el hook, la lógica del componente es mínima
+
+```tsx
+export const ShowLoadUser: React.FC = () => {
+  const user = useLoadUser();
+
+  return (
+    <Card title="Show Load User">
+      <p>Component consuming useLoadUser</p>
+      {user ? (
+        <div>
+          <h2>User Loaded</h2>
+          <p>
+            ID: {user.id} - Name: {user.name}
+          </p>
+        </div>
+      ) : (
+        <div>
+          <h2>No User Loaded</h2>
+        </div>
+      )}
+    </Card>
+  );
+};
+```
 
 ### Hooks personalizados con RxJS y gestión de side effects (useEffect)
 
@@ -302,7 +367,7 @@ En todos los componentes que utilizan observables repetimos el proceso de
 
 Con excepción de la primera parte, el resto del código es repetitivo y puede ser abstraído en hooks personalizados.
 
-##### 🧿Hook useObservable: primera versión
+##### ⚙️Hook useObservable: primera versión
 
 Volvamos al primer ejemplo de observable planteado, capaz de listar una serie de elementos.
 
@@ -407,7 +472,7 @@ El hook que hemos creado puede considerarse que tiene dos responsabilidades:
 
 De acuerdo con la sugerencia de **Ben Lesh** (creador de RxJS) en [🌍Introduction to RxJS Patterns in React Part 1/2 (Ft. Ben Lesh)](https://www.youtube.com/watch?v=qF8XcEwwPpU), podemos separar ambas funciones en dos hooks distintos
 
-##### 🧿Hooks useSubscription
+##### ⚙️Hooks useSubscription
 
 El hook `useSubscription` se encarga únicamente de gestionar la suscripción a un observable y la limpieza de la suscripción cuando el componente se desmonta.
 
@@ -447,7 +512,7 @@ export const useSubscription = <T,>(
 };
 ```
 
-##### 🧿Hooks useObservable (segunda versión)
+##### ⚙️Hooks useObservable (segunda versión)
 
 La nueva versión del hook `useObservable` utiliza `useSubscription` para gestionar la suscripción al observable y actualizar el estado del componente. Si usamos la versión del hook `useSubscription` que recibe un Partial del objeto Observer, el código queda más limpio.
 
@@ -576,7 +641,7 @@ Los observables de eventos en React presentan una dificultad extra, ya que para 
 
 Veamos como podemos afrontar este problema en un hook personalizado
 
-##### 🧿Hook useObservableEvent: suscripción a un observable de eventos
+##### ⚙️Hook useObservableEvent: suscripción a un observable de eventos
 
 Veamos un ejemplo básico partiendo de un contador de clics utilizando RxJS.
 
@@ -682,9 +747,9 @@ const CounterWithHook: React.FC = () => {
 };
 ```
 
-##### 🧿Hooks useSubscription y useObservable refactorizados
+##### ⚙️Hooks useSubscription y useObservable refactorizados
 
-El hook useObservableEvent podria descomponerse en 2 hooks, uno para la suscripción (useSubscription) y otro para manejar el estado (useObservable), como ya hemos visto anteriormente.
+El hook useObservableEvent podría descomponerse en 2 hooks, uno para la suscripción (useSubscription) y otro para manejar el estado (useObservable), como ya hemos visto anteriormente.
 
 Incluso podríamos ampliar la funcionalidad de los hook antes creados, para que fueran capaces de manejar observables o funciones factory, como en este caso.
 
@@ -735,13 +800,15 @@ export const useObservable = <T,>(
 };
 ```
 
-#### Datos y cambio de Estado en useEffect: uso de un hook personalizado con RxJS
+#### Datos y multiples estado en useEffect: Single Component Hooks
 
-Otra situación común es cuando necesitamos cargar datos asíncronos (e.g. de una API) y actualizar el estado del componente en función de esos datos. Podemos crear un hook personalizado que utilice RxJS para manejar la carga de datos y el estado asociado.
+Otra situación común es cuando necesitamos cargar datos asíncronos (e.g. de una API) y actualizar varios estados del componente en función de esos datos.
+
+Si un hook más genérico, como useObservable, no es suficiente para manejar la complejidad del estado, podemos crear un hook personalizado específico para el componente (single component hook) que utilice RxJS para manejar la carga de datos y el estado asociado.
 
 En primer lugar vamos a ver un componente que completa toda la lógica de carga de datos internamente, para luego refactorizarlo utilizando un hook personalizado con RxJS.
 
-##### 🧿Componente User: estado y asincronía
+##### 🧿Componente UserLogged: estados y asincronía
 
 Para empezar tenemos una función que simula la llamada a una API para obtener datos de un usuario.
 
@@ -826,53 +893,52 @@ export const UserLogged: React.FC = () => {
 
 4. los procesos asíncronos se manejan con las propiedades del objeto `subscribe`, que permiten definir funciones para manejar los casos de éxito (`next`) y error (`error`), equivalentes al método `.then()` y `.catch()` de las promesas. El método `finally` de las promesas no tiene un equivalente directo en RxJS, pero se puede simular usando el operador `finalize`, que se ejecuta cuando el observable completa o error.
 
-##### 🧿Estados, hooks y asincronía (RxJS): hook UseUser
+##### ⚙️Estados, hooks y asincronía (RxJS): hook useUserLogged
 
-La lógica de negocio que gestiona los estados del componente, incluyendo la carga de datos, se puede encapsular en un hook personalizado. Este hook puede manejar el estado de carga, el estado de error y la lógica de carga de datos, permitiendo que el componente sea más limpio y fácil de entender.
+La lógica de negocio que gestiona los estados del componente, incluyendo la carga de datos, y los efectos, se puede encapsular en un hook personalizado. Este hook puede manejar el estado de carga, el estado de error y la lógica de carga de datos, permitiendo que el componente sea más limpio y fácil de entender.
 
 ```tsx
-type UserState = {
+type UseUserHook = {
     user: User | null;
     loading: boolean;
     error: Error | null;
 };
 
-type UseUserHook = () => UserState & {
-    load: () => void;
-};
-
-export const useUser: UseUserHook = () => {
+export const useLoggedUser = () : UseUserHook => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
-    const load = (): void => {
-        fetchUserMock(1000, false)
-            .pipe(tap(() => setLoading(true)))
-            .subscribe({
-                next: (userData) => {
-                    setUser(userData);
-                    setLoading(false);
-                },
-                error: (err) => {
-                    setError(err);
-                    setLoading(false);
-                },
-            });
-    };
+    useEffect(() => {
+        const load = (): void => {
+            fetchUserMock(1000, false)
+                .pipe(tap(() => setLoading(true)))
+                .subscribe({
+                    next: (userData) => {
+                        setUser(userData);
+                        setLoading(false);
+                    },
+                    error: (err) => {
+                        setError(err);
+                        setLoading(false);
+                    },
+                });
+        };
 
-    return { user, loading, error, load };
+        load();
+    }, []);
+
+    return { user, loading, error };
+};
 ```
 
-Como consecuencia, el componente `UserComponent` se simplifica, ya que solo tiene que llamar al hook y manejar las funciones expuestas por el hook, en este caso la carga de datos, dentro de un `useEffects`.
+#### 🧿Componente UserLogged
+
+Como consecuencia, el componente `UserComponent` se simplifica, ya que solo tiene que llamar al hook y manejar los estados expuestos por el hook`.
 
 ```tsx
 export const UserComponent: React.FC = () => {
-  const { user, loading, error, loadData } = useUser();
-
-  useEffect(() => {
-    loadData();
-  }, []);
+  const { user, loading, error } = useLoggedUser();
 
   return (
     <div>
@@ -889,6 +955,114 @@ export const UserComponent: React.FC = () => {
     </div>
   );
 };
+```
+
+##### ⚙️Hook más genérico: useObservableLoad
+
+A partir de este punto, podemos crear un hook más genérico, que admita como estados los datos, load y el error, similar al useObservable que ya tenemos, e.g. use-observable-load.
+
+```tsx
+type LoadState<T> = {
+  value: T | null;
+  loading: boolean;
+  error: Error | null;
+};
+
+export const useLoadObservable = <T,>(
+  getData: () => Observable<T>
+): LoadState<T> => {
+  const [value, setValue] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
+
+  const observer: Partial<Observer<T>> = useMemo(
+    () => ({
+      next: (data): void => {
+        setValue(data);
+        setLoading(false);
+      },
+      error: (error: Error): void => {
+        setError(error);
+        setLoading(false);
+      },
+    }),
+    []
+  );
+
+  const data$ = useMemo(
+    () => getData().pipe(tap(() => setLoading(true))),
+    [getData]
+  );
+  useSubscription<T>(data$, observer);
+  return { value, loading, error };
+};
+```
+
+El componente sería prácticamente igual que en el caso anterior, excepto que le pasaríamos el observable a cargar como una función factory.
+
+```tsx
+export const UserLogged2: React.FC = () => {
+  const {
+    value: user,
+    loading,
+    error,
+  } = useLoadObservable<User>(fetchUserMock);
+
+  return (
+    <Card title="User Logged">
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error.message}</p>}
+      {user && (
+        <div>
+          <h4>{user.name}</h4>
+          <p>Email: {user.email}</p>
+          <p>Username: {user.username}</p>
+        </div>
+      )}
+    </Card>
+  );
+};
+```
+
+##### 🧿Componente agrupando los estados UserLogged3
+
+Otra opción es agrupar los estados en un único objeto, de forma que pueda ser gestionado por nuestro observable genérico useObservable.
+
+```tsx
+export type UserState = {
+    user: User | null;
+    loading: boolean;
+    error: Error | null;
+};
+
+export const UserLogged3: React.FC = () => {
+    const initialState: UserState = useMemo(
+        () => ({
+            user: null,
+            loading: true,
+            error: null,
+        }),
+        []
+    );
+    const source$: Observable<UserState> = useMemo(() => {
+        return fetchUserMock(3_000, false).pipe(
+            map((user) => ({
+                user,
+                loading: false,
+                error: null,
+            })),
+            startWith(initialState),
+            catchError((error) =>
+                of({
+                    user: null,
+                    loading: false,
+                    error,
+                })
+            )
+        );
+    }, [initialState]);
+
+    const [{ user, loading, error }] = useObservable<UserState>(source$, initialState);
 ```
 
 ## Integración y operaciones con Observables en componentes React
@@ -1029,7 +1203,7 @@ useEffect(() => {
 
 #### 👁️‍🗨️Test del componente Fibonacci
 
-Tenemos que testar las dos funcionalidades del compoente
+Tenemos que testar las dos funcionalidades del componente
 
 - calcular el número de items solicitado
 - calcular todos lo items por debajo de un límite
@@ -1074,9 +1248,138 @@ test('should calculate fibonacci sequence with a limit', async () => {
 
 Una vez mas vemos, que al estar testando las funcionalidades, la implementación basada en observables no tiene ningún efecto sobre los tests.
 
+#### Refactorizando Fibonacci en varios Componentes
+
+Partiendo del ejemplo anterior, tiene sentido separar la lógica de generación de la secuencia en un componente hijo, que reciba los parámetros necesarios para generar la secuencia y renderice el resultado, frente a un componente que nos permita decidir el tamaño de la serie: valor límite o número de items
+
+#### 🧿Componentes Fibonacci.v2
+
+El primer componente nos da un ejemplo de como gestionar un conjunto de radio buttons
+
+```tsx
+export type TypeLimits = 'numbers' | 'limit';
+
+export const Fibonacci2: React.FC = () => {
+  const radioRef = useRef<HTMLInputElement | null>(null);
+
+  const factoryRadio = (): Observable<TypeLimits> | null => {
+    const radio = radioRef.current;
+    if (!radio) return null;
+    return fromEvent<React.ChangeEvent<HTMLInputElement>>(radio, 'change').pipe(
+      map((event) => {
+        const { value } = event.target;
+        return value as TypeLimits;
+      })
+    );
+  };
+
+  const [typeLimit] = useObservable(factoryRadio, 'numbers');
+
+  return (
+    <Card title="Fibonacci sequences v.2">
+      <div className="options" ref={radioRef}>
+        <label>
+          <input type="radio" name="fibonacci" value="numbers" defaultChecked />
+          Generate by number of items
+        </label>
+        <label>
+          <input type="radio" name="fibonacci" value="limit" />
+          Generate by limit value
+        </label>
+      </div>
+      <FiboItems typeLimit={typeLimit} />
+    </Card>
+  );
+};
+```
+
+#### 🧿Componentes FiboItems
+
+El segundo componente recibe el tipo de límite y gestiona el input y la generación de la secuencia
+
+```tsx
+type Props = {
+  typeLimit: TypeLimits;
+};
+
+export const FiboItems: React.FC<Props> = ({ typeLimit = 'numbers' }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [series, setSeries] = useState<number[]>([]);
+
+  const inputLabel =
+    typeLimit === 'numbers' ? 'Number of items' : 'Limit of numbers';
+
+  const getFibonacciItems = useCallback(
+    (value: string): void => {
+      setSeries([]);
+      const num = Number(value);
+      if (Number.isNaN(num) || num < 1) {
+        return;
+      }
+      from(fibonacci())
+        .pipe(
+          typeLimit === 'numbers' ? take(num) : takeWhile((val) => val < num),
+          toArray()
+        )
+        .subscribe({
+          next: (val) => setSeries(val),
+          complete: () => console.log('Completed 1'),
+        });
+    },
+    [typeLimit]
+  );
+
+  const inputFactory = (): Observable<string> | null => {
+    const inputNumber = inputRef.current;
+    if (!inputNumber) return null;
+    inputNumber.value = '';
+    setSeries([]);
+
+    const input$ = fromEvent<React.InputEvent<HTMLInputElement>>(
+      inputNumber,
+      'input'
+    );
+
+    return input$.pipe(
+      // esperar 300ms de silencio y emitir solo el último valor
+      debounceTime(300),
+      // extraer el valor del input
+      map((ev) => (ev.target as HTMLInputElement).value),
+      // evitar emitir si el valor no cambia
+      distinctUntilChanged()
+    );
+  };
+
+  useSubscription(
+    useCallback(inputFactory, []),
+    useMemo(() => ({ next: getFibonacciItems }), [getFibonacciItems])
+  );
+
+  return (
+    <Card>
+      <div>
+        <label>
+          <span>{inputLabel}</span>
+          <input name="value" type="text" ref={inputRef} />
+        </label>
+        <p>
+          Series: <output className="series">{series.join(', ')}</output>
+        </p>
+      </div>
+    </Card>
+  );
+};
+```
+
+La función getFibonacciItems recibe el valor del input y genera la secuencia de Fibonacci en función del tipo de límite seleccionado. Internamente utiliza un observable, aplica el operador toArray y en la suscripción actualiza el estado con el array de valores de la serie de Fibonacci.
+
+La función inputFactory crea un observable a partir del evento input del input de texto, aplicando los operadores debounceTime, map y distinctUntilChanged para optimizar la emisión de valores.
+
+Más adelante retomaremos este ejemplo y veremos lo errores de diseño en el uso de los observables y los operadores de RxJS.
+
 ### Combinación de observables
 
-Junto con el operador `merge`, utilizado en el ejemplo anterior, existen otros operadores que permiten combinar múltiples observables en uno solo.
+Junto con el operador `merge`, utilizado en la primera versión del ejemplo anterior, existen otros operadores que permiten combinar múltiples observables en uno solo.
 
 - **merge**: Combina múltiples observables en uno solo, emitiendo valores a medida que llegan de cualquiera de los observables fuente.
 
@@ -1303,103 +1606,223 @@ Los operadores de aplanamiento son especialmente útiles en escenarios donde los
 
 Gracias a estos operadores, podemos gestionar de manera eficiente flujos de datos dinámicos y anidados sin necesidad de suscribirnos manualmente a cada observable interno.
 
-#### 🧿Componente GetData: MergeMap v. SwitchMap
+#### 🧿Evolución del componente Fibonacci: SwitchMap
+
+Si recuperamos el componente FiboItems de Fibonacci.v2, podemos ver que
+
+- la función getFibonacciItems crea un nuevo observable cada vez que se escribe en el input, y se suscribe a él para obtener los valores de la secuencia.
+- la función inputFactory crea un observable a partir del evento input del input de texto.
+- en la suscripción al observable del input, se llama a getFibonacciItems para generar la secuencia.
+
+Por tanto tenemos una suscripción dentro de una suscripción, lo que no es una buena práctica, sino un anti-patrón, que se evita usando operadores de aplanamiento.
+
+En la cadena de manipulación del observable del input, podemos usar **switchMap** para aplanar el observable creado en getFibonacciItems. A switchMap le podemos pasar una función que recibe el valor del input y devuelve el observable de la secuencia, pero aplanando el resultado. Como si nos hubiéramos suscrito y accediéramos al valor.
+
+Si necesitamos un valor inicial de array vacío, podemos empezar con un observable que lo emita y luego concatenar el observable de la secuencia usando el operador **concatWith**.
 
 ```tsx
-import React, { useEffect, useRef, useState } from 'react';
-import { fromEvent, of, switchMap } from 'rxjs';
+const inputFactory = (): Observable<number[]> | null => {
+  const inputNumber = inputRef.current;
+  if (!inputNumber) return null;
 
-export const GetData: React.FC = () => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const [data, setData] = useState<string | null>(null);
-
-  useEffect(() => {
-    const button = buttonRef.current;
-    if (!button) return;
-
-    const button$ = fromEvent(button, 'click');
-    const data$ = button$.pipe(
-      switchMap(() =>
-        // Simulamos una petición a un API
-        of('Data from API').pipe(
-          // Simulamos un retraso en la respuesta
-          delay(1000)
-        )
+  const source$ = of([])
+    // equivale a setSeries([]);
+    .pipe(
+      tap(() => {
+        inputNumber.value = '';
+      }),
+      concatWith(
+        fromEvent<React.InputEvent<HTMLInputElement>>(inputNumber, 'input')
+          .pipe(
+            // esperar 300ms de silencio y emitir solo el último valor
+            debounceTime(300),
+            // extraer el valor del input
+            map((ev) => {
+              const { value } = ev.target as HTMLInputElement;
+              const num = Number(value);
+              if (Number.isNaN(num) || num < 1) {
+                return 0;
+              }
+              return num;
+            }),
+            // evitar emitir si el valor no cambia
+            distinctUntilChanged()
+          )
+          .pipe(
+            switchMap((num) =>
+              from(fibonacci()).pipe(
+                typeLimit === 'numbers'
+                  ? take(num)
+                  : takeWhile((val) => val < num),
+                toArray()
+              )
+            )
+          )
       )
     );
 
-    const subscription = data$.subscribe({
-      next: (result) => setData(result),
-      error: (err) => console.error(err),
-    });
+  return source$;
+};
+```
 
-    return (): void => subscription.unsubscribe();
-  }, []);
+Como toda la lógica esta en el observable creado por inputFactory, solo tenemos que suscribirnos a él para actualizar el estado de la serie, utilizando nuestro hook useObservable
+
+```tsx
+type Props = {
+    typeLimit: TypeLimits;
+};
+
+const EMPTY_ARRAY: number[] = [];
+
+export const FiboItems: React.FC<Props> = ({ typeLimit = 'numbers' }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputLabel = typeLimit === 'numbers'
+    ? 'Number of items' : 'Limit of numbers';
+
+  const inputFactory = (): Observable<number[]> | null => {
+    // código que crea y modifica el observable
+  };
+
+  const [series, error] = useObservable(
+      useCallback(inputFactory, [typeLimit]),
+      EMPTY_ARRAY
+  );
 
   return (
-    <div>
-      <h2>Higher-Order Observable Example</h2>
-      <button ref={buttonRef}>Fetch Data</button>
-      {data && <p>Received: {data}</p>}
-    </div>
+      // Igual que en versiones anteriores
   );
 };
 ```
 
+Como parte del módulo tenemos una constante EMPTY_ARRAY que usamos como valor inicial del estado de la serie. Eso nos asegura que siempre será el mismo valor y que no provocara nuevos renderizados que nos lleven a un bucle infinito.
+
+#### 🧿Componente GetData: MergeMap v. SwitchMap
+
+Uno de los principales casos de uso de observables de orden superior es la gestión de los datos devueltos por las llamadas a una api.
+
+Como no nos interesa ahora la llamada en si mismo, la simulamos en un servicio que devuelve una promesa.
+
+```tsx
+const fetchMock = (): Promise<string> => {
+  return new Promise((resolve) => {
+    // Simulamos una petición a un API
+    setTimeout(() => {
+      console.log('Fetching data...');
+      resolve('Data from API');
+    }, 1000);
+  });
+};
+```
+
+En el componente que queremos lanzar la llamada en respuesta a un botón, solo si fuera un submit, por lo que construimos un factory como siempre que tenemos un observable de eventos
+
+```tsx
+import React, { useEffect, useRef, useState } from 'react';
+import { fromEvent, of, switchMap } from 'rxjs';
+export const GetDataSwitchMap: React.FC = () => {
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  const factory = (): Observable<string> | null => {
+    const button = buttonRef.current;
+    if (!button) return null;
+
+    const button$ = fromEvent(button, 'click');
+    const data$ = button$.pipe(
+      switchMap(() =>
+        from(fetchMock()).pipe(tap(() => console.log('Receiving data...')))
+      )
+    );
+    return data$;
+  };
+
+  const [data] = useObservable(factory, null);
+
+  return (
+    <Card title="Higher-Order Observable Example">
+      <button ref={buttonRef}>Fetch Data</button>
+      {data && <p>Received: {data}</p>}
+    </Card>
+  );
+};
+```
+
+El mismo componente lo podemos crear usando **mergeMap** en lugar de switchMap, para poder ver las diferencias de funcionamiento.
+
+- Con el switchMap, si el usuario pulsa varias veces el botón rápidamente, solo se procesa la última petición, cancelando las anteriores. Vemos en consola varios mensajes "Fetching data", procedentes del servicio mock pero un solo mensaje "Receiving data...", procedente del observable interno.
+
+- Con el mergeMap, todas las peticiones se procesan, por lo que en consola vemos varios mensajes "Receiving data...", uno por cada petición realizada.
+
 #### 👁️‍🗨️Test del componente GetData
+
+Como la llamada a la api ya es un mock en el componente, lo testamos directamente y comprobamos que se renderiza correctamente y que al pulsar el botón se muestra el resultado esperado.
+
+```tsx
+describe('GetData', () => {
+  test('should render correctly', () => {
+    render(<GetDataSwitchMap />);
+    const heading = screen.getByRole('heading', { name: /higher-order/i });
+    expect(heading).toBeInTheDocument();
+  });
+
+  test('should fetch mock data correctly', async () => {
+    render(<GetDataSwitchMap />);
+    const button = screen.getByRole('button', { name: /fetch data/i });
+    await userEvent.click(button);
+    const receivedText = await screen.findByText(
+      /received:/i,
+      {},
+      { timeout: 2000 }
+    );
+    expect(receivedText).toBeInTheDocument();
+    expect(receivedText).toHaveTextContent('Received: Data from API');
+  });
+});
+```
 
 #### 🧿Componente IntervalCounter3 (2 botones con switchMap)
 
 Los operadores de aplanamiento nos pueden ayudar a refactorizar el componente del contador de intervalos para evitar la gestión manual de las suscripciones.
 
 ```tsx
-import { useEffect, useRef, useState } from 'react';
-import { fromEvent, interval, Subscription } from 'rxjs';
-import { switchMap, takeUntil, scan } from 'rxjs/operators';
+iexport const IntervalCounter3: React.FC = () => {
+    const startRef = useRef<HTMLButtonElement | null>(null);
+    const stopRef = useRef<HTMLButtonElement | null>(null);
 
-export const IntervalCounter4: React.FC = () => {
-  const startRef = useRef<HTMLButtonElement | null>(null);
-  const stopRef = useRef<HTMLButtonElement | null>(null);
+    const factory = useCallback((): Observable<number> | null => {
+        const btnStart = startRef.current;
+        const btnStop = stopRef.current;
+        const interval$ = interval(100);
 
-  const [counter, setCounter] = useState(0);
+        if (!btnStart || !btnStop) return null;
 
-  useEffect(() => {
-    const btnStart = startRef.current;
-    const btnStop = stopRef.current;
+        const start$ = fromEvent(btnStart, 'click');
+        const stop$ = fromEvent(btnStop, 'click');
 
-    if (!btnStart || !btnStop) return;
+        const counter$ = start$.pipe(
+            switchMap(() =>
+                interval$.pipe(
+                    // incrementar el contador
+                    scan((a) => a + 1, 0),
+                    // detener cuando se pulse stop
+                    takeUntil(stop$)
+                )
+            )
+        );
 
-    const start$ = fromEvent(btnStart, 'click');
-    const stop$ = fromEvent(btnStop, 'click');
-    const interval$ = interval(100);
+        return counter$;
+    }, []);
 
-    const sub: Subscription = start$
-      .pipe(
-        switchMap(() =>
-          interval$.pipe(
-            // incrementar el contador
-            scan((a) => a + 1, 0),
-            // detener cuando se pulse stop
-            takeUntil(stop$)
-          )
-        )
-      )
-      .subscribe((value) => {
-        setCounter(value);
-      });
+    const [counter] = useObservable(factory, 0);
 
-    return (): void => sub.unsubscribe();
-  }, []);
-
-  return (
-    <section>
-      <p>
-        Counter <span className="counter">{counter}</span>
-      </p>
-      <button ref={startRef}>Start</button>
-      <button ref={stopRef}>Stop</button>
-    </section>
-  );
+    return (
+        <Card title="2 Buttons counter">
+            <p>
+                Counter <output className="counter">{counter}</output>
+            </p>
+            <button ref={startRef}>Start</button>
+            <button ref={stopRef}>Stop</button>
+        </Card>
+    );
 };
 ```
 
@@ -1411,17 +1834,16 @@ El observable interno basado en intervalos se encarga de incrementar el contador
 
 Aunque la implementación es diferente, la interfaz y el comportamiento es igual que en el contador1, por lo que utilizamos exactamente el mismo test.
 
-#### 🧿Componente IntervalCounter4 (3 botones con switchMap)
+#### 🧿Componente IntervalCounter4 (3 botones con switchMap y merge)
 
 Lo mismo sucede en el contador al que le hemos añadido un tercer botón para poder pausarlo.
 
 ```tsx
-import { useEffect, useRef, useState } from 'react';
-import { fromEvent, interval, merge, NEVER, Subscription } from 'rxjs';
+import { useCallback, useRef } from 'react';
+import { fromEvent, interval, merge, NEVER, Observable, of } from 'rxjs';
 import { switchMap, scan, map, startWith } from 'rxjs/operators';
-
-// Vuelve al ejemplo con solo dos botones
-// Esta vez usando switchMap
+import { useObservable } from '../../../hooks/rx/use-observable.v3';
+import { Card } from '../../core/card/card';
 
 type ControlEvent = { running: boolean; reset?: boolean };
 
@@ -1430,16 +1852,18 @@ export const IntervalCounter4: React.FC = () => {
   const pauseRef = useRef<HTMLButtonElement | null>(null);
   const stopRef = useRef<HTMLButtonElement | null>(null);
 
-  const [counter, setCounter] = useState(0);
-  // const [isRunning, setIsRunning] = useState(false);
-
-  useEffect(() => {
+  const factory = ():
+    | [
+        Observable<ControlEvent>,
+        Observable<ControlEvent>,
+        Observable<ControlEvent>
+      ]
+    | null => {
     const btnStart = startRef.current;
-    const btnStop = stopRef.current;
     const btnPause = pauseRef.current;
+    const btnStop = stopRef.current;
 
-    if (!btnStart || !btnStop || !btnPause) return;
-
+    if (!btnStart || !btnPause || !btnStop) return null;
     const start$ = fromEvent(btnStart, 'click').pipe(
       map((): ControlEvent => ({ running: true }))
     );
@@ -1449,6 +1873,12 @@ export const IntervalCounter4: React.FC = () => {
     const stop$ = fromEvent(btnStop, 'click').pipe(
       map((): ControlEvent => ({ running: false, reset: true }))
     );
+    return [start$, pause$, stop$];
+  };
+
+  const factoryCounter = useCallback((): Observable<number> | null => {
+    const [start$, pause$, stop$] = factory() || [];
+    if (!start$ || !pause$ || !stop$) return null;
 
     const counter$ = merge(start$, pause$, stop$)
       // En este caso el StartWith no es necesario, pero lo dejamos para ver su uso
@@ -1456,35 +1886,30 @@ export const IntervalCounter4: React.FC = () => {
       .pipe(
         switchMap((control) => {
           if (control.reset) {
-            setCounter(0);
-            return NEVER;
+            // reset Counter a 0;
+            return of(-1);
           }
           return control.running ? interval(100) : NEVER;
         }),
-        scan((a) => a + 1, 0)
+        scan((a, val) => {
+          if (val === -1) return 0; // reset explícito
+          return a + 1;
+        }, 0)
       );
-
-    const sub: Subscription = counter$.subscribe({
-      next: (value) => {
-        setCounter(value);
-      },
-      complete: () => {
-        setCounter(0);
-      },
-    });
-
-    return (): void => sub.unsubscribe();
+    return counter$;
   }, []);
 
+  const [counter] = useObservable<number>(factoryCounter, 0);
+
   return (
-    <section>
+    <Card title="3 Buttons counter">
       <p>
-        Counter <span className="counter">{counter}</span>
+        Counter <output className="counter">{counter}</output>
       </p>
       <button ref={startRef}>Start</button>
       <button ref={pauseRef}>Pause</button>
       <button ref={stopRef}>Stop</button>
-    </section>
+    </Card>
   );
 };
 ```
