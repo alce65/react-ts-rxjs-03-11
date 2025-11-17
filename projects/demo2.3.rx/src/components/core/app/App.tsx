@@ -3,8 +3,7 @@ import { Layout } from '../layout/layout';
 import { ListNames } from '@/components/withHooks/list-names';
 import { CounterClicks } from '@/components/withHooks/counter-clicks';
 import { UserLogged } from '@/components/withHooks/user/user-load-rx';
-import { Fibonacci } from '@/components/fibonacci/fibonacci';
-
+import { Fibonacci } from '@/components/fibonacci.v3/fibonacci';
 
 export const App: React.FC = () => {
     const title = 'TS + React + RxJS';
