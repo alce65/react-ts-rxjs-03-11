@@ -260,11 +260,20 @@ Avanzado
 
 [descanso] 16:40 - 17:00
 
-<!--
 - Observables de Orden Superior (Higher-Order Observables) (continuación)
-    - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
+
+  - 👁️‍🗨️Test del componente IntervalCounter3 (2 botones con switchMap)
   - 🧿Componente IntervalCounter4 (3 botones con switchMap)
     - 👁️‍🗨️Test del componente IntervalCounter4 (3 botones con switchMap)
+
+- Http Client (introducción)
+  - nuevo proyecto TS-Rx-HttpClient: demo4
+  - promesas en fetch
+  - Peticiones HTTP con RxJS
+    - fromFetch
+    - ajax
+
+<!--
 
 #### Día 10 - Martes 18/11/2026
 - Http Client (Mod. 4)
