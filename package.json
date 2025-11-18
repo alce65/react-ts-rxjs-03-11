@@ -9,7 +9,8 @@
     "projects/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "json-server server/db.json --port 4000"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "license": "ISC",
   "prettier": {
     "singleQuote": true
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.3"
   }
 }
