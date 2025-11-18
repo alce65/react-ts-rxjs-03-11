@@ -15,6 +15,7 @@
       - [Día 8 - Jueves 13/11/2026](#día-8---jueves-13112026)
     - [Semana 3](#semana-3)
       - [Día 9 - Lunes 17/11/2026](#día-9---lunes-17112026)
+      - [Día 10 - Martes 18/11/2026](#día-10---martes-18112026)
 
 DURACIÓN: 45 horas
 
@@ -63,24 +64,24 @@ Avanzado
   - Solución de los problemas de instalación
   - Tiempo para el ejercicio
 
-- **Footer**
+- 🧿**Footer**
   - Estructura de carpetas para componentes
   - Componentes funcionales y elementos JSX. Tipado con TypeScript
   - Estilos CSS: archivos CSS por componente
-  - Tests unitarios con Vitest
+  - 👁️‍🗨️Tests unitarios con Vitest
     - Elementos de los tests. Matching
     - Testing Library. Querying
 
 [descanso]
 
-- **Header**
+- 🧿**Header**
   - Props y tipado de props con TypeScript
-- **Card**
+- 🧿**Card**
   - Prop children y su tipado
-- **Layout**
-- **App**
+- 🧿**Layout**
+- 🧿**App**
   - Composición de componentes. Prop drilling
-- **Counter**
+- 🧿**Counter**
   - Uso de hooks básicos: useState. Tipado del estado con TypeScript
   - Eventos y su tipado en TypeScript
 
@@ -89,16 +90,16 @@ Avanzado
 - Tipado de eventos en TypeScript
   - Eventos específicos
   - target vs currentTarget. Casting
-- Componente Counter 2Buttons
+- 🧿Componente Counter 2Buttons
 
-  - Testing del componente
+  - 👁️‍🗨️Testing del componente
 
 - Formularios controlados vs no controlados
 
-  - Servicio usuarios (mock)
-  - Componente LoginForm (controlado)
-  - Componente RegisterForm (no controlado)
-  - Tests de formularios
+  - ⚙️Servicio usuarios (mock)
+  - 🧿Componente LoginForm (controlado)
+  - 🧿Componente RegisterForm (no controlado)
+  - 👁️‍🗨️Tests de formularios
 
 - Add project demo1 clonado de Demo1
 
@@ -107,19 +108,19 @@ Avanzado
 - Programación asíncrona v. reactiva
   - Conceptos
   - Promesas: then v. async/await
-    - Servicio getData basado en promesas
-    - Test del servicio
-  - Componente Search con promesas
+    - ⚙️Servicio getData basado en promesas
+    - 👁️‍🗨️Test del servicio
+  - 🧿Componente Search con promesas
     - Consumo del servicio getData
 
 #### Día 4 - Jueves 06/11/2026
 
-- Componente Search con promesas (continuación)
-  - Test del componente
-- Componente Search optimizado con debounce (promesas)
-  - Test del componente
-- Cancelación de peticiones (promesas)
-  - Test del componente
+- 🧿Componente Search con promesas (continuación)
+  - 👁️‍🗨️Test del componente
+- 🧿Componente Search optimizado con debounce (promesas)
+  - 👁️‍🗨️Test del componente
+- 🧿Componente con cancelación de peticiones (promesas)
+  - 👁️‍🗨️Test del componente
 - Conceptos de programación reactiva
 
 - Patrones de diseño reactivos
@@ -169,15 +170,15 @@ Avanzado
 - Observables RxJS en componentes de react
 
   - Proyecto React + TS + RxJS + Vite
-  - Observables y estado: ListNames
+  - Observables y estado: 🧿ListNames
     - useState: creación del estado
     - useEffect y suscripciones: actualización del estado
     - uso de useMemo
-  - Observables y eventos: ClickCounter
+  - Observables y eventos: 🧿ClickCounter
     - fromEvent: creación del observable
     - useEffect y suscripciones: actualización del estado
     - operadores de RxJS: map, scan..
-  - Observables e intervalos: IntervalCounter
+  - Observables e intervalos: 🧿IntervalCounter
     - interval: creación del observable
     - useEffect y suscripciones: actualización del estado
 
@@ -187,7 +188,7 @@ Avanzado
 
   - función de limpieza en useEffect
   - desuscripción automática
-    - Componente IntervalCounter2 con takeUntil
+    - 🧿Componente IntervalCounter2 con takeUntil
 
 - Typescript avanzado. Tipos en React (comentarios)
 - Genéricos. Restricciones con Extend
@@ -197,7 +198,7 @@ Avanzado
 
 [descanso] 16:20 - 16:45
 
-- Genéricos en React. Componente List genérico
+- Genéricos en React. 🧿Componente List genérico
 - Mapped Types
 - Conditional Types
 - Utility Types
@@ -205,7 +206,7 @@ Avanzado
 #### Día 7 - Miércoles 12/11/2026 - hasta las 17.15
 
 - Terminar Utility Types
-- Comentar componente User uniones v. condicionales
+- Comentar 🧿Componente User uniones v. condicionales
 - TypeScript y asincronía. Manejo de errores
 
   - Promesas con TS
@@ -213,22 +214,22 @@ Avanzado
 
 - Hooks Personalizados y RxJS
   - Introducción. Tipado de hooks personalizados
-    - useToggle
-    - useLocalStorage, usando genéricos
+    - ⚙️useToggle
+    - ⚙️useLocalStorage, usando genéricos
     - Test de los hooks
 - Creación de hooks personalizados con RxJS
-  - Componente Lista (datos, asincronía)->
-    - useObservable.v1
-    - useObservable.v2 + useSubscription
-    - Test de los componentes -> test de los hookscd
-  - Componente ClicksCounter (Eventos) ->
-    - useObservable.v3 + useSubscription
-    - Test de los componentes -> test de los hooks
+  - 🧿Componente Lista (datos, asincronía)->
+    - ⚙️useObservable.v1
+    - ⚙️useObservable.v2 + useSubscription
+    - 👁️‍🗨️Test de los componentes -> test de los hookscd
+  - 🧿Componente ClicksCounter (Eventos) ->
+    - ⚙️useObservable.v3 + useSubscription
+    - 👁️‍🗨️Test de los componentes -> test de los hooks
 
 #### Día 8 - Jueves 13/11/2026
 
 - Hooks Personalizados y RxJS (continuación)
-  - Componente y multiples estados: UserLogged -> useUserLogged
+  - Componente y multiples estados: 🧿UserLogged -> ⚙️useUserLogged
   - Single Component Hook
 - Integración y operaciones con Observables en componentes React
   - Debounces y Throttles
@@ -253,7 +254,7 @@ Avanzado
 
 - Observables de Orden Superior (Higher-Order Observables)
   - 🧿Componente Fibonacci v.2
-    - 👁️‍🗨️Test del componente Fibonacci (sin comentarlo)
+    - 👁️‍🗨️Test del componente Fibonacci
   - 🧿Componente GetData: MergeMap v. SwitchMap
     - 👁️‍🗨️Test del componente GetData
   - 🧿Componente IntervalCounter3 (2 botones con switchMap)
@@ -270,25 +271,83 @@ Avanzado
   - nuevo proyecto TS-Rx-HttpClient: demo4
   - promesas en fetch
   - Peticiones HTTP con RxJS
-    - fromFetch
     - ajax
-
-<!--
+    - fromFetch (más actual)
 
 #### Día 10 - Martes 18/11/2026
-- Http Client (Mod. 4)
-  - ⚙️Servicio genérico fetchService
+
+- Http Client
+  - ⚙️Servicio genérico dataFetch
     - operadores fromFetch y switchMap, tipado, errores
-  - ⚙️Servicio específico fetchTodoService
-  - 🧿Componente FetchButton
+  - ⚙️Servicio específico userDataFetch
+  - 🧿Componente GetUserData
+
+[descanso] 16:20 - 16:40
+
+- 🧿Componente GetUserButton
+
 - Manejo de API desde un input de búsqueda
   - 🧿 Componente ReadInput
   - ⚙️Servicio SearchCountries
   - 🧿Componente SearchCountries
+- Test de servicios HTTPClient
+  - 👁️‍🗨️Test del servicio fetchService (generico)
+
+<!--
 
 #### Día 11 - Miércoles 19/11/2026
-¿Subjects en Componentes de React?
+
+- Http Client (continuación)
+
+  - Test de servicios HTTPClient (continuación)
+    - 👁️‍🗨️Test del servicio fetchTodoService (específico)
+
+  - Patrón repositorio (Repository)
+    - 🌐Interface Repository
+    - Repositorio en memoria: InMemoryUserRepository]
+    - ⚙️Servicio API Repositorio: APIUserRepository
+    - 🧿Componente UsersList
+
+ - Creación de flujos de datos reactivos con RxJS: Hot Observables
+    - Concepto de Hot Observables
+    - 🧿Componente ClicksCounter (con un Subject): Eventos y Subjects
+    - Acciones con Subjects: patrón Flux
+      - 🧿Componente Counter3Buttons
+      - Mejora del "reducer" y tipos de acciones
+      - El patrón flux nativo en react: useReducer
+    - [Opción: useReducerRx (Sin desarrollar info, solo el código)]
+    - Combinación de flujos y operadores complejos
+      - ⚙️Servicios getByUrl y searchPokemon
+      - 🧿Componente SearchPokemon
+    - Flujos de datos en múltiples componentes
+      - ⚙️SubjectManager: servicio para compartir flujos
+      - 🧿DemoPage con componentes que comparten flujos
+
+[Opción - desde poryecto proof]
+- Wether converter (uso de BehaviorSubject v. Subject)
+- Weather series (uso de ReplaySubject)
 
 #### Día 12 - Jueves 20/11/2026
 Gestión del estado. Subjects (Mod. 5)
+- React Context y programación reactiva
+    - Inyección en React: Contexto
+      - Contextos de React, Hooks y servicios
+        - 🌐Creación del contexto y del proveedor
+      - Acceso al contexto
+    - Contexto dinámico y custom Hooks
+      - 🌐Theme \& Language Context (¿Mencionar?)
+      - 🌐User Context
+    - Contexto en React19. El API `use`
+  - Gestión avanzada del estado con BehaviorSubject
+    - ¿🌐State Manager Service?
+    - ¿🧿Componente Counter con State Manager Service?
+    - ¿🧿Componente UserProfile con State Manager Service?
+  - ¿Integración de flujos de estado con Redux y RxJS?
+
+Comentar lo abarcado de los módulos siguientes:
+
+6 - patrones
+7 - testing
+8 - optimización
+
 -->
