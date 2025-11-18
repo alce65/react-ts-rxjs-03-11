@@ -1,6 +1,8 @@
-import { GetData } from '@/components/get-data/get-data';
+import { GetUsers } from '@/components/get-user.data/get-user-data';
 import { Layout } from '../layout/layout';
-
+import { GetUserById } from '@/components/get-user.data/get-user-button';
+import { ReadInput } from '@/components/search/read-input';
+import { SearchCountries } from '@/components/search/search-countries';
 
 export const App: React.FC = () => {
     const title = 'RxJS + API REST';
@@ -8,7 +10,12 @@ export const App: React.FC = () => {
     return (
         <Layout appTitle={title}>
             <main>
-                <GetData />
+                <GetUsers />
+                <GetUserById />
+                <hr />
+                <ReadInput />
+                <hr />
+                <SearchCountries />
             </main>
         </Layout>
     );
