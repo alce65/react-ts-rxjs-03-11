@@ -14,7 +14,7 @@ describe('data-fetch module tests', () => {
     describe('getData function', () => {
         const url = 'https://api.example.com/data';
 
-        globalThis.fetch = vi.fn().mockResolvedValueOnce({
+        globalThis.fetch = vi.fn().mockResolvedValue({
             ok: true,
             json: async () => [...mockData],
         } as Response);
@@ -43,7 +43,7 @@ describe('data-fetch module tests', () => {
         });
 
         test('should handle HTTP ok false', () => {
-            globalThis.fetch = vi.fn().mockResolvedValueOnce({
+            globalThis.fetch = vi.fn().mockResolvedValue({
                 ok: false,
                 status: 404,
             } as Response);
@@ -58,7 +58,7 @@ describe('data-fetch module tests', () => {
         });
 
         test('should handle HTTP error', () => {
-            globalThis.fetch = vi.fn().mockRejectedValueOnce(new Error('Network error'));
+            globalThis.fetch = vi.fn().mockRejectedValue(new Error('Network error'));
             const data$ = getData<Item[]>(url)();
             expect(data$).toBeDefined();
             data$.subscribe({

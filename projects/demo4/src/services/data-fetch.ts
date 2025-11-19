@@ -1,5 +1,5 @@
 import { HttpError } from '@/types/http-error';
-import { catchError, Observable, switchMap, tap } from 'rxjs';
+import { catchError, Observable, retry, switchMap, tap } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 
 
@@ -19,6 +19,7 @@ export const getData = <T>(url: string): () => Observable<T> => {
             console.log('Processed Response:', data);
             return data;
         }),
+        retry(3),
         catchError((err) => {
             if (!(err instanceof HttpError)) {
                 throw new HttpError(

@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 const url = 'http://localhost:4000/users';
 // 'https://jsonplaceholder.typicode.com/users';
 
-export const getUserData = getData<User[]>(url);
+export const getUserData = (): Observable<User[]> => getData<User[]>(url)();
 
 export const getUserById = (id: string): Observable<User> => {
     const url_ID = `${url}/${id}`;
