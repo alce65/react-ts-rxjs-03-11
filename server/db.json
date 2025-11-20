@@ -1,24 +1,56 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Doe",
       "email": "john.doe@example.com"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jane Smith",
       "email": "jane.smith@example.com"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Alice Johnson",
       "email": "alice.johnson@example.com"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Bob Brown",
       "email": "bob.brown@example.com"
+    }
+  ],
+  "notes": [
+    {
+      "id": "1e24",
+      "title": "This is a note for María.",
+      "author": "Pepe Pérez",
+      "isImportant": true
+    },
+    {
+      "id": "2e24",
+      "title": "This is a note for Pepe.",
+      "author": "María García",
+      "isImportant": false
+    },
+    {
+      "id": "3e24",
+      "title": "This is a note for Ana.",
+      "author": "Luis Fernández",
+      "isImportant": true
+    },
+    {
+      "id": "4e24",
+      "title": "This is a note for Luis.",
+      "author": "Ana López",
+      "isImportant": false
+    },
+    {
+      "id": "1e88",
+      "title": "Una Nota",
+      "author": "Pepe Perez",
+      "isImportant": true
     }
   ]
 }

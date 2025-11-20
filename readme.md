@@ -16,6 +16,7 @@
     - [Semana 3](#semana-3)
       - [Día 9 - Lunes 17/11/2026](#día-9---lunes-17112026)
       - [Día 10 - Martes 18/11/2026](#día-10---martes-18112026)
+      - [Día 11 - Miércoles 19/11/2026](#día-11---miércoles-19112026)
 
 DURACIÓN: 45 horas
 
@@ -293,8 +294,6 @@ Avanzado
 - Test de servicios HTTPClient
   - 👁️‍🗨️Test del servicio fetchService (generico)
 
-<!--
-
 #### Día 11 - Miércoles 19/11/2026
 
 - Http Client (continuación)
@@ -302,15 +301,12 @@ Avanzado
   - Test de servicios HTTPClient (continuación)
     - 👁️‍🗨️Test del servicio fetchTodoService (específico)
 
-  - Patrón repositorio (Repository)
-    - 🌐Interface Repository
-    - Repositorio en memoria: InMemoryUserRepository]
-    - ⚙️Servicio API Repositorio: APIUserRepository
-    - 🧿Componente UsersList
+- Creación de flujos de datos reactivos con RxJS: Hot Observables
+  - Concepto de Hot Observables
+  - 🧿Componente ClicksCounter (con un Subject): Eventos y Subjects
 
- - Creación de flujos de datos reactivos con RxJS: Hot Observables
-    - Concepto de Hot Observables
-    - 🧿Componente ClicksCounter (con un Subject): Eventos y Subjects
+[descanso] 16:17 - 16:35
+
     - Acciones con Subjects: patrón Flux
       - 🧿Componente Counter3Buttons
       - Mejora del "reducer" y tipos de acciones
@@ -319,17 +315,25 @@ Avanzado
     - Combinación de flujos y operadores complejos
       - ⚙️Servicios getByUrl y searchPokemon
       - 🧿Componente SearchPokemon
-    - Flujos de datos en múltiples componentes
-      - ⚙️SubjectManager: servicio para compartir flujos
-      - 🧿DemoPage con componentes que comparten flujos
 
-[Opción - desde poryecto proof]
+<!--
+[Opción no incluida - desde proyecto proof]
 - Wether converter (uso de BehaviorSubject v. Subject)
 - Weather series (uso de ReplaySubject)
+-->
+
+<!--
 
 #### Día 12 - Jueves 20/11/2026
-Gestión del estado. Subjects (Mod. 5)
-- React Context y programación reactiva
+
+- Creación de flujos de datos reactivos con RxJS: Hot Observables
+
+    - Flujos de datos en múltiples componentes
+      - ⚙️SubjectManager: servicio para compartir flujos
+      - 🧿DemoPage con componentes que com8parten flujos
+
+- Gestión del estado. Subjects (Mod. 5)
+  - React Context y programación reactiva (revisar)
     - Inyección en React: Contexto
       - Contextos de React, Hooks y servicios
         - 🌐Creación del contexto y del proveedor
@@ -347,7 +351,13 @@ Gestión del estado. Subjects (Mod. 5)
 Comentar lo abarcado de los módulos siguientes:
 
 6 - patrones
+
+  - Patrón repositorio (Repository)
+    - 🌐Interface Repository
+    - Repositorio en memoria: InMemoryUserRepository]
+    - ⚙️Servicio API Repositorio: APIUserRepository
+    - 🧿Componente UsersList
+
 7 - testing
 8 - optimización
-
 -->
