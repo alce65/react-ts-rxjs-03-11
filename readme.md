@@ -17,6 +17,7 @@
       - [Día 9 - Lunes 17/11/2026](#día-9---lunes-17112026)
       - [Día 10 - Martes 18/11/2026](#día-10---martes-18112026)
       - [Día 11 - Miércoles 19/11/2026](#día-11---miércoles-19112026)
+      - [Día 12 - Jueves 20/11/2026](#día-12---jueves-20112026)
 
 DURACIÓN: 45 horas
 
@@ -300,6 +301,10 @@ Avanzado
 
   - Test de servicios HTTPClient (continuación)
     - 👁️‍🗨️Test del servicio fetchTodoService (específico)
+  - Test componentes que usan servicios HTTPClient
+    - 👁️‍🗨️Test del componente GetUserData
+    - 👁️‍🗨️Test del componente GetUserButton
+    - 👁️‍🗨️Test del componente SearchCountries
 
 - Creación de flujos de datos reactivos con RxJS: Hot Observables
   - Concepto de Hot Observables
@@ -316,21 +321,21 @@ Avanzado
       - ⚙️Servicios getByUrl y searchPokemon
       - 🧿Componente SearchPokemon
 
-<!--
-[Opción no incluida - desde proyecto proof]
-- Wether converter (uso de BehaviorSubject v. Subject)
-- Weather series (uso de ReplaySubject)
--->
-
-<!--
-
 #### Día 12 - Jueves 20/11/2026
-
-- Creación de flujos de datos reactivos con RxJS: Hot Observables
 
     - Flujos de datos en múltiples componentes
       - ⚙️SubjectManager: servicio para compartir flujos
       - 🧿DemoPage con componentes que com8parten flujos
+
+<!--
+  [Opción no incluida - desde proyecto proof]
+  - Wether converter (uso de BehaviorSubject v. Subject)
+  - Weather series (uso de ReplaySubject)
+-->
+
+[descanso] 16:13 - 16:30
+
+- Creación de flujos de datos reactivos con RxJS: Hot Observables
 
 - Gestión del estado. Subjects (Mod. 5)
   - React Context y programación reactiva (revisar)
@@ -343,21 +348,15 @@ Avanzado
       - 🌐User Context
     - Contexto en React19. El API `use`
   - Gestión avanzada del estado con BehaviorSubject
-    - ¿🌐State Manager Service?
-    - ¿🧿Componente Counter con State Manager Service?
-    - ¿🧿Componente UserProfile con State Manager Service?
-  - ¿Integración de flujos de estado con Redux y RxJS?
+    - 🌐Context
+    - 🌐Interface Repository
+  - - ⚙️Repository Service: Patrón repositorio (Repository)
+    - ⚙️State Manager Service
+    - 🧿Componente Notes con State Manager Service
+    - 🧿Componente AddNotes con State Manager Service
 
 Comentar lo abarcado de los módulos siguientes:
 
 6 - patrones
-
-  - Patrón repositorio (Repository)
-    - 🌐Interface Repository
-    - Repositorio en memoria: InMemoryUserRepository]
-    - ⚙️Servicio API Repositorio: APIUserRepository
-    - 🧿Componente UsersList
-
 7 - testing
 8 - optimización
--->
