@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import reactLogo from '@assets/react.svg';
 import viteLogo from '/vite.svg';
 import './header.css';
+import { AppContext } from '@/context/context';
 
-type Props = {
-    appTitle: string;
-};
-
-export const Header: React.FC<Props> = ({ appTitle }) => {
+export const Header: React.FC = () => {
+    const { appTitle } = useContext(AppContext);
     return (
         <header>
             <div>

@@ -2,17 +2,14 @@ import React from 'react';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 
-type Props = {
-    appTitle: string;
-};
 
-export const Layout: React.FC<React.PropsWithChildren<Props>> = ({
+
+export const Layout: React.FC<React.PropsWithChildren> = ({
     children,
-    appTitle,
 }) => {
     return (
         <>
-            <Header appTitle={appTitle} />
+            <Header/>
             <div>{children}</div>
             <Footer />
         </>
